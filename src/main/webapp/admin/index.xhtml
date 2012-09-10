@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
+
 <ui:composition template="/layout/layoutPrincipal.xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -12,7 +13,7 @@
     <h1>
       <a href="index.jsf">Administrativo</a>
     </h1>
-    <p>Visualizar o <a href="#{facesContext.externalContext.requestContextPath}/home.jsf">Website</a></p>
+    <p>Visualizar <a href="#{facesContext.externalContext.requestContextPath}/home.jsf">Website</a></p>
   </ui:define>
   
   <ui:define name="gallery"></ui:define>
@@ -32,7 +33,7 @@
         </li>
         <li>
           <a href='usuario.jsf'>
-            <span>Usuários<h:outputText value=" Usuários"/></span>
+            <span><h:outputText value="Usuários"/></span>
           </a>
         </li>
         <li>
@@ -49,6 +50,7 @@
     <fieldset>
       <legend>Cadastro do site</legend>
       <h:messages globalOnly="true" />
+          <p:messages id="msg" autoUpdate="true" showDetail="true" />  
       <h:form id="formDados" rendered="#{!siteBean.modoEdicao}" prependId="false">
         <h:dataTable value="#{siteBean.sites}" var="site" id="listagem" border="0" width="620">
           <h:column>
@@ -77,8 +79,8 @@
           <h:inputText id="codigo" value="#{siteBean.site.web_cod}" rendered="#{!empty siteBean.site.web_cod}" readonly="#{!empty siteBean.site.web_cod}" styleClass="" />
           
           <h:outputLabel value="Título" styleClass="" />
-          <h:inputText id="titulo" value="#{siteBean.site.web_titulo}" required="true" requiredMessage="#{msg.campoObrigatorio}" size="25" maxlength="100" styleClass="" />
-          <h:message for="titulo" styleClass="erro" />
+          <h:inputText id="titulo" value="#{siteBean.site.web_titulo}" required="true" requiredMessage="Campo obrigatório." size="25" maxlength="100" styleClass="" />
+          <h:message for="titulo" styleClass="msg" />
           
           <h:outputLabel value="Slogan" styleClass="" />
           <h:inputText id="slogan" value="#{siteBean.site.web_slogan}" size="50" maxlength="50" styleClass="" />
@@ -120,9 +122,10 @@
           
           <h:outputLabel value="E-mail" styleClass="" />
           <h:inputText id="email" value="#{siteBean.site.web_email}" size="40" maxlength="100" required="true" validator="#{uteis.validaEmail}" requiredMessage="Campo obrigatório." styleClass="" />
+          <h:message for="email" styleClass="msg" />
           
           <!--
-          <h:message for="email" styleClass="erro" />
+          <h:message for="email" styleClass="" />
           <h:outputLabel value="#{msg.site} #{msg.exemploUrl}" styleClass="" />
           
           <h:inputText id="site" value="#{siteBean.site.web_site}" size="40" maxlength="50" styleClass="" />
