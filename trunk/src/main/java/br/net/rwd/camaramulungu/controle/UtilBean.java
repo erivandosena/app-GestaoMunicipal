@@ -16,11 +16,6 @@ public class UtilBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-// private static void addMessage(FacesMessage.Severity severity, String msg) {
-  //      final FacesMessage facesMsg = new FacesMessage(severity, msg, msg);
-  //      FacesContext.getCurrentInstance().addMessage(null, facesMsg);
-  //  }
     
     private static void addMessage(String componentId, String errorMessage, FacesMessage.Severity severity) {
 		FacesMessage message = new FacesMessage(errorMessage);
@@ -43,53 +38,6 @@ public class UtilBean implements Serializable {
 	protected void addInfoMessage(String infoMessage) {
 		addInfoMessage(null, infoMessage);
 	}
-	
-	/*
-	private static final long serialVersionUID = 1L;
-	
-
-    private static void addMessage(FacesMessage.Severity severity, String msg) {
-        final FacesMessage facesMsg = new FacesMessage(severity, msg, msg);
-        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
-    }
-
-    public static void addErrorMessage(String msg) {
-        addMessage(FacesMessage.SEVERITY_ERROR, msg);
-    }
- 
-    public static void addSuccessMessage(String msg) {
-        addMessage(FacesMessage.SEVERITY_INFO, msg);
-    }
- 
-    public static String getBundleKey(String bundleName, String key) {
-        return FacesContext
-                .getCurrentInstance()
-                .getApplication()
-                .getResourceBundle(FacesContext.getCurrentInstance(),
-                        bundleName).getString(key);
-    }
-
-	protected void addErrorMessage(String componentId, String errorMessage) {
-		addMessage(componentId, errorMessage, FacesMessage.SEVERITY_ERROR);
-	}
-
-	protected void addInfoMessage(String componentId, String infoMessage) {
-		addMessage(componentId, infoMessage, FacesMessage.SEVERITY_INFO);
-	}
-
-	protected void addInfoMessage(String infoMessage) {
-		addInfoMessage(null, infoMessage);
-	}
-
-	private void addMessage(String componentId, String errorMessage,
-			Severity severity) {
-		FacesMessage message = new FacesMessage(errorMessage);
-		message.setSeverity(severity);
-		FacesContext.getCurrentInstance().addMessage(componentId, message);
-
-	}
-	
-	*/
 	
 	/*
 	 * 

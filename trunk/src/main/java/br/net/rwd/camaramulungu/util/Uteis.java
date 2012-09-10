@@ -66,7 +66,7 @@ public class Uteis {
 
 		if (!matchFound) {
 			((UIInput) componente).setValid(false);
-			FacesMessage message = new FacesMessage("E-mail invï¿½lido");
+			FacesMessage message = new FacesMessage("E-mail inválido.");
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(componente.getClientId(context), message);
 		}

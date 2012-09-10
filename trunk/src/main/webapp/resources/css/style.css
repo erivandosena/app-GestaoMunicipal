@@ -99,7 +99,7 @@ a:hover {
 
 #logo #saldacao {
 	float: left;
-	margin-left: -250px;
+	margin-left: -210px;
 	margin-top: 5px;
 	padding: 26px 0 0 10px;
 	font: normal 14px Georgia, "Times New Roman", Times, serif;
@@ -798,5 +798,11 @@ table tbody tr.light{
 table tbody tr.dark{
 	color:#666666;
 	background-color:#E8E8E8;
+	}
+	
+/* mensagens */
+
+.msg {
+	color: red;
 	}
 
