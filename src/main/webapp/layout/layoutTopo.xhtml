@@ -6,10 +6,15 @@
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	
-		<div id="logo">
-			<h1><a href="#">Passageway </a></h1>
-			<p> design by <a href="http://www.freecsstemplates.org">FCT</a></p>
-		</div>
-    	<br class="clear" />
+    <h1>
+      <a href="home.jsf">#{siteBean.carregarDados.web_titulo}</a>
+    </h1>
+    <p><h:outputText value=" #{siteBean.carregarDados.web_slogan}" rendered="true" /></p>
+    <br /><br />
+    <p id="saldacao">
+    	#{siteBean.saldacao} <strong>#{loginBean.usuarioLogado}</strong> | 
+		<h:link value=" Login" outcome="/admin/index.jsf" rendered="#{loginBean.statusLogado eq false}"/>
+    	<h:outputLink  value="#{request.contextPath}/j_spring_security_logout" rendered="#{loginBean.statusLogado eq true}"> Sair(<a href="#{request.contextPath}/admin/index.jsf">Administrativo</a>)</h:outputLink>
+    </p>
 		
 </ui:composition>

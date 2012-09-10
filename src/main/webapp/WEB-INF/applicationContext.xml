@@ -25,10 +25,10 @@
 		<property name="username" value="postgres" />
 		<property name="password" value="postgres" />
 	</bean>
-	
+
 	<!-- Configuracao do Hibernate -->
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="CamaraMuluguPU" />
+		<property name="persistenceUnitName" value="CamaraMulunguPU" />
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -42,5 +42,5 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-
+	
 </beans>

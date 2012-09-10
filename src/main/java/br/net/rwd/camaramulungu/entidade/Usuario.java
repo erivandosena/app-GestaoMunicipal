@@ -199,5 +199,5 @@ public class Usuario implements Serializable, UserDetails {
 			return false;
 		return true;
 	}
-
+	
 }

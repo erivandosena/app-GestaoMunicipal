@@ -10,19 +10,21 @@
 
 	<sec:http auto-config="true" access-denied-page="/negado.jsf">
 		<sec:intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<sec:intercept-url pattern="/admin/**" access="ROLE_USER, ROLE_ADM" />
-		<sec:form-login login-page="/login.jsf" login-processing-url="/j_spring_security_check" default-target-url="/index.jsf" authentication-failure-url="/login.jsf" />
+        <sec:intercept-url pattern="/admin/**" access="ROLE_USER, ROLE_ADMIN" />	
+		<sec:form-login 
+		login-page="/login.jsf" 
+		login-processing-url="/j_spring_security_check" 
+		default-target-url="/admin/index.jsf" 
+		authentication-failure-url="/login.jsf?login_error=true" />
 		<sec:logout logout-success-url="/login.jsf" />
 	</sec:http>
 
-	<sec:authentication-manager>
+	<sec:authentication-manager alias="authenticationManager">
 		<sec:authentication-provider user-service-ref="usuarioDetailsService" ref="daoAuthenticationProvider" />
 	</sec:authentication-manager>
 
 	<bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<property name="userDetailsService" ref="usuarioDetailsService" />
 	</bean>
-
-	<bean id="loggerListener" class="org.springframework.security.access.event.LoggerListener" />
 
 </beans>
