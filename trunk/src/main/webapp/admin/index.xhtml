@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition template="/layout/layoutPrincipal.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns="http://www.w3.org/1999/xhtml">
+  
+  <ui:define name="tituloJanela">#{siteBean.carregarDados.web_titulo} - Administrativo</ui:define>
+  
+  <ui:define name="logo">
+    <h1>
+      <a href="index.jsf">Administrativo</a>
+    </h1>
+    <p>Visualizar o <a href="#{facesContext.externalContext.requestContextPath}/home.jsf">Website</a></p>
+  </ui:define>
+  
+  <ui:define name="gallery"></ui:define>
+  
+  <ui:define name="gallery-bgthumb">
+    <div id='cssmenu'>
+      <ul>
+        <li class='active'>
+          <a href='index.jsf'>
+            <span>Principal</span>
+          </a>
+        </li>
+        <li>
+          <a href='index.jsf'>
+            <span>Site</span>
+          </a>
+        </li>
+        <li>
+          <a href='usuario.jsf'>
+            <span>Usuários<h:outputText value=" Usuários"/></span>
+          </a>
+        </li>
+        <li>
+          <a href='#{facesContext.externalContext.requestContextPath}/j_spring_security_logout'>
+            <span>Sair</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div style="clear: both; margin: 0 0 30px 0;"></div>
+  </ui:define>
+  
+  <ui:define name="post">
+    <fieldset>
+      <legend>Cadastro do site</legend>
+      <h:messages globalOnly="true" />
+      <h:form id="formDados" rendered="#{!siteBean.modoEdicao}" prependId="false">
+        <h:dataTable value="#{siteBean.sites}" var="site" id="listagem" border="0" width="620">
+          <h:column>
+            <f:facet name="header">Título</f:facet>
+            <h:outputText value="#{site.web_titulo}" />
+          </h:column>
+          <h:column>
+            <f:facet name="header"></f:facet>
+            <h:commandLink value="Alterar" action="#{siteBean.atualizar}">
+              <f:setPropertyActionListener target="#{siteBean.site}" value="#{site}" />
+            </h:commandLink>
+          </h:column>
+          <h:column>
+            <f:facet name="header"></f:facet>
+            <h:commandLink id="lnkDelete" value="Excluir" onclick="if (!confirm('Tem certeza que deseja excluir este registro?')) return false" action="#{siteBean.excluir}">
+              <f:setPropertyActionListener target="#{siteBean.site}" value="#{site}" />
+            </h:commandLink>
+          </h:column>
+        </h:dataTable>
+        <h:commandButton value="Cadastrar" actionListener="#{siteBean.incluir}" />
+        <h:commandButton value="Atualizar" action="#{siteBean.retornar}" />
+      </h:form>
+      <h:form id="formEdicao" rendered="#{siteBean.modoEdicao}" prependId="false">
+        <h:panelGrid columns="1" border="0" >
+          <h:outputLabel value="Código" rendered="#{!empty siteBean.site.web_cod}" styleClass="" />
+          <h:inputText id="codigo" value="#{siteBean.site.web_cod}" rendered="#{!empty siteBean.site.web_cod}" readonly="#{!empty siteBean.site.web_cod}" styleClass="" />
+          
+          <h:outputLabel value="Título" styleClass="" />
+          <h:inputText id="titulo" value="#{siteBean.site.web_titulo}" required="true" requiredMessage="#{msg.campoObrigatorio}" size="25" maxlength="100" styleClass="" />
+          <h:message for="titulo" styleClass="erro" />
+          
+          <h:outputLabel value="Slogan" styleClass="" />
+          <h:inputText id="slogan" value="#{siteBean.site.web_slogan}" size="50" maxlength="50" styleClass="" />
+          
+          <h:outputLabel value="Descrição do perfil" styleClass="" />
+          <h:inputTextarea id="descricao" rows="20" cols="70" value="#{siteBean.site.web_descricao}" styleClass="" />
+          
+          <h:outputLabel value="Nome do responsável" styleClass="" />
+          <h:inputText id="proprietario" value="#{siteBean.site.web_proprietario}" size="50" maxlength="50" styleClass="" />
+          
+          <h:outputLabel value="Endereço" styleClass="" />
+          <h:inputText id="endereco" value="#{siteBean.site.web_endereco}" size="50" maxlength="100" styleClass="" />
+          
+          <h:outputLabel value="Número" styleClass="" />
+          <h:inputText id="numero" value="#{siteBean.site.web_numero}" size="5" maxlength="10" styleClass="" />
+          
+          <h:outputLabel value="Bairro" styleClass="" />
+          <h:inputText id="bairro" value="#{siteBean.site.web_bairro}" size="25" maxlength="40" styleClass="" />
+          
+          <h:outputLabel value="CEP" styleClass="" />
+          <h:inputText id="cep" value="#{siteBean.site.web_cep}" size="10" maxlength="10" styleClass="" />
+          
+          <!--  
+			<h:outputLabel value="#{msg.estado}" styleClass=""/>
+			<h:selectOneMenu id="estado" value="#{siteBean.site.web_estado}" onchange="submit()" valueChangeListener="#{websiteControlador.retornaUf}" styleClass="">
+				<f:selectItem itemValue="" itemLabel="#{msg.selecione}" /> 
+				<f:selectItems value="#{ufEstados.estados}" />	
+			</h:selectOneMenu> 
+			
+			<h:outputLabel value="#{msg.cidade}" styleClass=""/>
+			<h:selectOneMenu id="cidade" value="#{siteBean.site.web_cidade}" styleClass="">
+				<f:selectItem itemValue="" itemLabel="#{msg.selecione}" /> 
+				<f:selectItems value="#{websiteControlador.cidades}" />	
+			</h:selectOneMenu>
+			-->
+          
+          <h:outputLabel value="Telefone" styleClass="" />
+          <h:inputText id="telefone" value="#{siteBean.site.web_telefone}" size="10" maxlength="15" styleClass="" />
+          
+          <h:outputLabel value="E-mail" styleClass="" />
+          <h:inputText id="email" value="#{siteBean.site.web_email}" size="40" maxlength="100" required="true" validator="#{uteis.validaEmail}" requiredMessage="Campo obrigatório." styleClass="" />
+          
+          <!--
+          <h:message for="email" styleClass="erro" />
+          <h:outputLabel value="#{msg.site} #{msg.exemploUrl}" styleClass="" />
+          
+          <h:inputText id="site" value="#{siteBean.site.web_site}" size="40" maxlength="50" styleClass="" />
+          <h:outputLabel value="#{msg.blog} #{msg.exemploUrl}" styleClass="" />
+          
+          <h:inputText id="blog" value="#{siteBean.site.web_blog}" size="40" maxlength="250" styleClass="" />
+          <h:outputLabel value="#{msg.messenger}" styleClass="" />
+          
+          <h:inputText id="messenger" value="#{siteBean.site.web_messenger}" size="40" maxlength="100" styleClass="" />
+          <h:outputLabel value="#{msg.skype} #{msg.exemploUrl}" styleClass="" />
+          
+          <h:inputText id="skype" value="#{siteBean.site.web_skype}" size="40" maxlength="50" styleClass="" />
+          <h:outputLabel value="#{msg.orkut} #{msg.exemploUrl}" styleClass="" />
+          
+          <h:inputText id="orkut" value="#{siteBean.site.web_orkut}" size="40" maxlength="250" styleClass="" />
+          <h:outputLabel value="#{msg.twitter} #{msg.exemploUrl}" styleClass="" />
+          
+		  <h:outputLabel value="#{msg.twitter} #{msg.exemploUrl}" styleClass="" />
+	      <h:inputText id="twitter" value="#{siteBean.site.web_twitter}" size="40" maxlength="250" styleClass="edit" />
+	      
+          <h:outputLabel value="#{msg.facebook} #{msg.exemploUrl}" styleClass="" />
+          <h:inputText id="facebook" value="#{siteBean.site.web_facebook}" size="40" maxlength="250" styleClass="" />
+          
+          <h:outputLabel value="#{msg.linkedin} #{msg.exemploUrl}" styleClass="" />
+          <h:inputText id="linkedin" value="#{siteBean.site.web_linkedin}" size="40" maxlength="250" styleClass="" />
+          
+          <h:outputLabel value="#{msg.flickr} #{msg.exemploUrl}" styleClass="" />
+          <h:inputText id="flickr" value="#{siteBean.site.web_flickr}" size="40" maxlength="250" styleClass="" />
+          
+          <h:outputLabel value="#{msg.myspace} #{msg.exemploUrl}" styleClass="" />
+          <h:inputText id="myspace" value="#{siteBean.site.web_myspace}" size="40" maxlength="250" styleClass="" />
+          
+          <h:outputLabel value="#{msg.vimeo} #{msg.exemploUrl}" styleClass="" />
+          <h:inputText id="vimeo" value="#{siteBean.site.web_vimeo}" size="40" maxlength="250" styleClass="" />
+          -->
+        </h:panelGrid>
+        <h:commandButton value="Salvar" actionListener="#{siteBean.salvar}" />
+        <h:commandButton value="Cancelar" action="#{siteBean.retornar}" immediate="true" />
+      </h:form>
+    </fieldset>
+  </ui:define>
+  
+  <ui:define name="sidebar">
+    <ul>
+      <li>
+        <h2>Opções Úteis</h2>
+        <p>Aqui você poderá acessar as estatísticas de visitação do
+          website, configurar contas de e-mail e acessar outras informações
+          sobre o plano de hospedagem.</p>
+      </li>
+      <li>
+        <h2>Relatórios de acesso</h2>
+        <ul>
+          <li>
+            <a href="http://stats.porta80.com.br" target="_brank">Estatísticas</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2>Workspace Office</h2>
+        <ul>
+          <li>
+            <a href="http://www.workspace.com.br/camaramulungu/" target="_brank">Workspace</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2>RWD</h2>
+        <ul>
+          <li>
+            <a href="http://www.rwd.net.br" target="_brank">Desenvolvimento</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </ui:define>
+</ui:composition>

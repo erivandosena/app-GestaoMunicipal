@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition template="/layout/layoutPrincipal.xhtml"
+    xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns="http://www.w3.org/1999/xhtml">
+	
+  <ui:define name="tituloJanela"><h:outputText value="#{siteBean.carregarDados.web_titulo} - " rendered="true" />Login</ui:define>
+    
+  <ui:define name="gallery-bgthumb">
+  </ui:define>
+  
+  <ui:define name="post">
+    <h:form id="formLogin" prependId="false">
+      <h2 class="title">
+        <a href="#">Login</a>
+      </h2>
+      <p class="meta">
+        <span class="date">Ainda não é usuário?</span>
+        <span class="posted"><a href="#">Faça seu cadastro</a></span>
+      </p>
+      <div style="clear: both;">&#160;</div>
+      <div class="entry">
+        <p:messages id="mensagens" showDetail="true" showSummary="false" />
+        <h:panelGrid columns="2">
+          <strong>
+            <h:outputLabel value="Usuário" />
+          </strong>
+          <br />
+          <h:inputText id="_j_username" value="#{loginBean.usuario}" size="15" />
+          <br />
+          <strong>
+            <h:outputLabel value="Senha" />
+          </strong>
+          <br />
+          <h:inputSecret id="_j_password" value="#{loginBean.senha}" size="15" />
+          <br />
+          <h:commandButton value="Entrar" action="#{loginBean.logar}" />
+        </h:panelGrid>
+      </div>
+      <p class="links">Esqueceu a senha? <a href="#">Recuperar senha</a></p>
+    </h:form>
+  </ui:define>
+</ui:composition>

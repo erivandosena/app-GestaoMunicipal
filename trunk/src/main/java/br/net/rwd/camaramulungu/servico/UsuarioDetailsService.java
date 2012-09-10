@@ -3,21 +3,22 @@ package br.net.rwd.camaramulungu.servico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import br.net.rwd.camaramulungu.dao.UsuarioDAO;
+import br.net.rwd.camaramulungu.entidade.Usuario;
 
-@Service("usuarioDetailsService")
-public class UsuarioDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
+@Component("usuarioDetailsService")
+public class UsuarioDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UsuarioDAO usuarioDao;
 
+	@Override
 	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException, DataAccessException {
-		// TODO Auto-generated method stub
-		// assumindo que tem uma classe de usuario que implementa UserDetails
-		// carregar usuario de retorno usando as tecnicas regulares JPA
-		return usuarioDao.usuarioPorNome(arg0);
+		return usuarioDao.obterEntidade(Usuario.class,"SELECT u from Usuario u where u.usu_email = ?1", arg0);
 	}
+
 }

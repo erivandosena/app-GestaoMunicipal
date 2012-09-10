@@ -8,7 +8,7 @@
 	xml:lang="pt-br">
 
 <h:head>
-<title><ui:insert name="tituloJanela" /></title>
+<title><ui:insert name="tituloJanela" >#{siteBean.carregarDados.web_titulo}<h:outputText value=" - #{siteBean.carregarDados.web_slogan}" rendered="true" /></ui:insert></title>
 
 <meta name="description" content="AMEX Advocacia e assessoria empresarial e do consumidor. Acesse #{siteControlador.webinfo.web_titulo} e veja mais #{siteControlador.detalhes.pag_titulo}" />
 <meta name="keywords" content="advocacia,assessoria,empresarial,consultoria,advogado,juridico,civel,familia,sucessoes,bancaria,fiscal,crimes financeiros,cobrancas,imobiliario, conteudo #{siteControlador.detalhes.pag_titulo}" />
@@ -17,61 +17,109 @@
 
 <h:outputStylesheet library="css" name="style.css" target="body" />
 <h:outputScript library="javascript" name="jquery/jquery-1.4.2.min.js" target="head"/>
-<h:outputScript library="javascript" name="jquery/jquery.gallerax-0.2.js" target="head"/>
+<h:outputScript library="javascript" name="jquery/plugins/gallerax/jquery.gallerax-0.2.js" target="head" />
 
-<h:outputScript library="javascript" name="jquery.jcarousel.pack.js" target="head"/>
-<h:outputScript library="javascript" name="jquery.jcarousel.setup.js" target="head"/>
+<h:outputScript library="javascript" name="jquery/plugins/jcarousel/lib/jquery.jcarousel.js" target="head" />
+<h:outputScript library="javascript" name="jquery/plugins/jcarousel/lib/jquery.jcarousel.pack.js" target="head" />
+<h:outputScript library="javascript" name="jquery/plugins/lightbox/js/jquery.lightbox-0.5.js" target="head" />
+
+<h:outputStylesheet library="javascript" name="jquery/plugins/jcarousel/lib/jquery.jcarousel.css" target="body" />
+<h:outputStylesheet library="javascript" name="jquery/plugins/jcarousel/skins/tango/skin.css" target="body" />
+<h:outputStylesheet library="javascript" name="jquery/plugins/lightbox/css/jquery.lightbox-0.5.css" target="body" />
+
+<script type="text/javascript">
+	function mycarousel_initCallback(carousel)
+	{
+		// Desabilita o autoscrolling se o usuário clicar no botão anterior ou próximo.
+		carousel.buttonNext.bind('click', function() {
+		carousel.startAuto(0);
+    });
+
+    carousel.buttonPrev.bind('click', function() {
+        carousel.startAuto(0);
+    });
+
+    //Pausa o autoscrolling se o usuário mover o cursor sobre a imagem clip.
+    carousel.clip.hover(function() {
+        carousel.stopAuto();
+    }, function() {
+        carousel.startAuto();
+    });
+	};
+
+	jQuery(document).ready(function() {
+    jQuery('#gallery-bgthumb').jcarousel({
+        auto: 2,
+        wrap: 'last',
+        initCallback: mycarousel_initCallback
+    });
+    jQuery("#bgthumb a").lightBox(); 
+	});
+ </script>
 
 </h:head>
-
 <h:body>
-
-	<h:form id="formSite" prependId="false">
-	
-<div id="wrapper">
-	<div id="header">
-	<!-- inicio insert topo -->
-	<ui:insert name="header">	
-		<ui:include src="/layout/layoutTopo.xhtml" />				
-	</ui:insert> 
-	<!-- final insert topo -->
-	</div>
-	<div id="page">
-		<div id="page-bgtop">
-			<div id="page-bgbtm">
-				<div id="content">
-				<!-- inicio insert conteudo -->
-				<ui:insert name="container">	
-					<ui:include src="/layout/layoutConteudo.xhtml" />				
-				</ui:insert> 
-				<!-- final insert conteudo -->
-				</div>
-				<!-- end #content -->
-				<div id="sidebar">
-				<!-- inicio insert conteudo coluna lateral direita -->
-				<ui:insert name="container">	
-					<ui:include src="/layout/layoutConteudoColuna.xhtml" />				
-				</ui:insert> 
-				<!-- final insert conteudo coluna lateral direita -->
-				</div>
-				<!-- end #sidebar -->
-				<div style="clear: both;">&nbsp;</div>
-			</div>
-		</div>
-	</div>
-	<!-- end #page -->
-</div>
-<div id="footer">
-<!-- inicio insert rodape -->
-<ui:insert name="copyright">	
-	<ui:include src="/layout/layoutRodape.xhtml" />				
-</ui:insert> 
-<!-- final insert rodape -->
-</div>
-<!-- end #footer -->
-
-	</h:form>
-	
+  <!-- form -->
+  <div id="wrapper">
+    <div id="header">
+      <div id="logo"> 
+        <!-- inicio insert topo -->
+        <ui:insert name="logo">
+          <ui:include src="/layout/layoutTopo.xhtml" />
+        </ui:insert>
+        <!-- final insert topo --> 
+      </div>
+    </div>
+    <div id="page">
+      <div id="page-bgtop">
+        <div id="page-bgbtm">
+          <div id="content">
+            <div id="gallery">
+              <!-- inicio insert conteudo imagem --> 
+              <ui:insert name="gallery">
+                <ui:include src="/layout/layoutConteudoGaleria.xhtml" />
+              </ui:insert>
+              <!-- final insert conteudo imagem  -->
+              <!-- inicio insert conteudo carrossel -->
+              <ui:insert name="gallery-bgthumb">
+                <ui:include src="/layout/layoutConteudoCarrossel.xhtml" />
+              </ui:insert>
+              <!-- final insert conteudo carrossel -->
+              
+              <!-- end --> 
+            </div>
+            <div class="post"> 
+              <!-- inicio insert conteudo -->
+              <ui:insert name="post">
+                <ui:include src="/layout/layoutConteudo.xhtml" />
+              </ui:insert>
+              <!-- final insert conteudo --> 
+            </div>
+            <div style="clear: both;">&#160;</div>
+          </div>
+          <!-- end #content -->
+          <div id="sidebar"> 
+            <!-- inicio insert conteudo coluna lateral direita -->
+            <ui:insert name="sidebar">
+              <ui:include src="/layout/layoutConteudoColuna.xhtml" />
+            </ui:insert>
+            <!-- final insert conteudo coluna lateral direita --> 
+          </div>
+          <!-- end #sidebar -->
+          <div style="clear: both;">&#160;</div>
+        </div>
+      </div>
+    </div>
+    <!-- end #page --> 
+  </div>
+  <div id="footer"> 
+    <!-- inicio insert rodape -->
+    <ui:insert name="footer">
+      <ui:include src="/layout/layoutRodape.xhtml" />
+    </ui:insert>
+    <!-- final insert rodape --> 
+  </div>
+  <!-- end #footer --> 
+<!-- /form -->
 </h:body>
-
 </html>

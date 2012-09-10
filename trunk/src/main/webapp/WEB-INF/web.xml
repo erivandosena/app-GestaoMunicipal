@@ -20,6 +20,9 @@
 	<listener>
 		<listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
 	
 	<!-- Spring Security -->
 	<description>Spring Security - Filtro de seguranca</description>
@@ -30,6 +33,8 @@
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
 	
 	<!-- Java Server Faces -->
@@ -73,10 +78,9 @@
 		<servlet-name>Resource Servlet</servlet-name>
 		<url-pattern>/primefaces_resource/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- log4j -->
 	<description>Log4J</description>
-	<description>Aponta para a raiz do aplicativo web</description>
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
 		<param-value>/WEB-INF/log4j.properties</param-value>
@@ -96,5 +100,12 @@
 
 	<session-config>
 		<session-timeout>45</session-timeout>
-	</session-config> 
+	</session-config>
+
+	<!--  
+	<error-page>
+		<exception-type>javax.servlet.ServletException</exception-type>
+		<location>/index.jsp</location>
+	</error-page> 
+	-->
 </web-app>

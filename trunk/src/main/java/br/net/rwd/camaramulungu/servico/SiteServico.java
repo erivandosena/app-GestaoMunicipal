@@ -33,27 +33,27 @@ public class SiteServico extends DAOGenerico<Serializable> {
 	}
 	
 	public Site selecionarSite() {
-		return dao.obterEntidade(Site.class, "SELECT s from Site s");
+		return dao.obterEntidade(Site.class, "SELECT s FROM Site s");
 	}
 	
 	public Site selecionarSite(int codigo) {
-		return dao.obterEntidade(Site.class, "SELECT s from Site s where s.web_cod = ?1", codigo);
+		return dao.obterEntidade(Site.class, "SELECT s FROM Site s WHERE s.web_cod = ?1", codigo);
 	}
 	
 	public Site selecionarSite(String nome) {
-		return dao.obterEntidade(Site.class, "SELECT s from Site s where s.web_titulo = ?1", nome);
+		return dao.obterEntidade(Site.class, "SELECT s FROM Site s WHERE s.web_titulo = ?1", nome);
 	}
 	
 	public List<Site> listarSite() {
-		return dao.obterLista(Site.class, "SELECT s from Site s ORDER BY s.web_cod ASC");
+		return dao.obterLista(Site.class, "SELECT s FROM Site s ORDER BY s.web_cod ASC");
 	}
 	
 	public List<Site> listarSite(int codigo) {
-		return dao.obterLista(Site.class, "SELECT s from Site s where s.web_cod = ?1", codigo);
+		return dao.obterLista(Site.class, "SELECT s FROM Site s WHERE s.web_cod = ?1", codigo);
 	}
 	
 	public List<Site> listarSite(String nome) {
-		return dao.obterLista(Site.class, "SELECT s from Site s where s.web_titulo = ?1", nome);
+		return dao.obterLista(Site.class, "SELECT s FROM Site s WHERE s.web_titulo = ?1", nome);
 	}
 
 }
