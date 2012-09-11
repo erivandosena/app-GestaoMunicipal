@@ -344,7 +344,7 @@ public class SiteBean extends UtilBean implements CrudBeans<Object> {
             addInfoMessage("Site criado com sucesso.");
             retornar();
         } else {
-            model.editarSite(site);
+            model.alterarSite(site);
             addInfoMessage("Site alterado com sucesso.");
             retornar();
         }

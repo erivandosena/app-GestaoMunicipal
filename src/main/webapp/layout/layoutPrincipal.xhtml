@@ -8,7 +8,7 @@
 
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><ui:insert name="tituloJanela" >#{siteBean.carregarDados.web_titulo}<h:outputText value=" - #{siteBean.carregarDados.web_slogan}" rendered="true" /></ui:insert></title>
+<title><ui:insert name="tituloJanela" >#{siteBean.carregarDados.web_titulo}<h:outputText value=" - #{siteBean.carregarDados.web_slogan}" rendered="#{!empty siteBean.carregarDados.web_slogan}" /></ui:insert></title>
 
 <meta name="description" content="#{siteBean.carregarDados.web_titulo} Acesse #{siteBean.carregarDados.web_titulo} e veja mais #{siteBean.carregarDados.web_slogan}" />
 <meta name="keywords" content="camara,municipal,mulungu,legislativo,relatorios,prestacao,contas,vereadores,presidente" />

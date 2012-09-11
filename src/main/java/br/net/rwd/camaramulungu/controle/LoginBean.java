@@ -82,5 +82,14 @@ public class LoginBean {
 			return false;
 		}
 	}
+	
+	public String getUsuarioEmSessao() {
+		Object usuarioLogado = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (usuarioLogado instanceof UserDetails) {
+			return ((UserDetails)usuarioLogado).getAuthorities().iterator().next().getAuthority().toString();
+		} else {
+			return "";
+		}
+	}
 
 }

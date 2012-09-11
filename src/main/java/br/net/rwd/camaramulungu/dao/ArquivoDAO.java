@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.springframework.stereotype.Repository;
 
-@Repository("perfilDao")
-public class PerfilDAO extends DAOGenerico<Serializable> {
+@Repository("arquivoDao")
+public class ArquivoDAO extends DAOGenerico<Serializable> {
+
 }

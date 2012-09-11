@@ -60,4 +60,8 @@ public class UsuarioServico extends DAOGenerico<Serializable> {// extends Hibern
 		return dao.obterLista(Usuario.class, "SELECT u FROM Usuario u WHERE u.usu_nome = ?1", nome);
 	}
 	
+	public List<Usuario> listarLikeUsuario(String nome) {
+		return dao.obterLista(Usuario.class, "SELECT u FROM Usuario u WHERE u.usu_nome like ?1", nome);
+	}
+	
 }

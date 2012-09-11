@@ -24,7 +24,7 @@ public class SiteServico extends DAOGenerico<Serializable> {
 		return dao.adicionar(site);
 	}
 	
-	public void editarSite(Site site) {
+	public void alterarSite(Site site) {
 		dao.atualizar(site);
 	}
 	
