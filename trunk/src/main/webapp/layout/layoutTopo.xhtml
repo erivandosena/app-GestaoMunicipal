@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -9,8 +9,7 @@
     <h1>
       <a href="home.jsf">#{siteBean.carregarDados.web_titulo}</a>
     </h1>
-    <p><h:outputText value=" #{siteBean.carregarDados.web_slogan}" rendered="true" /></p>
-    <br /><br />
+    <p><h:outputText value="#{siteBean.carregarDados.web_slogan}" /></p>
     <p id="saldacao">
     	#{siteBean.saldacao} <strong>#{loginBean.usuarioLogado}</strong> | 
 		<h:link value=" Login" outcome="/admin/index.jsf" rendered="#{loginBean.statusLogado eq false}"/>

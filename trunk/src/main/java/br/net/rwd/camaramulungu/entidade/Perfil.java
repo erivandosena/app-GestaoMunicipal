@@ -93,5 +93,10 @@ public class Perfil implements Serializable, GrantedAuthority {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return this.per_nome.toString();
+	}
 
 }

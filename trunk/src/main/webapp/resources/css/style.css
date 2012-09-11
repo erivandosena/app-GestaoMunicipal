@@ -76,31 +76,37 @@ a:hover {
 	padding-top: 20px;
 }
 
-#logo h1, #logo p {
+#logo h1, #logo p, #saldacao  {
 	margin: 0;
 	padding: 0;
+	display: inline;
 }
 
 #logo h1 {
-	float: left;
 	letter-spacing: -1px;
-	text-transform: lowercase;
+	text-transform: none;
 	font-size: 3.8em;
+	width: 900px;
+	height: 55px;
+	overflow: hidden;
+	text-align: center;
 }
 
 #logo p {
 	float: left;
-	margin: 0;
-	padding: 26px 0 0 10px;
-	font: normal 14px Georgia, "Times New Roman", Times, serif;
+	margin: -3px;
+	padding: 0 0 0 0px;
+	font: normal 22px Georgia, "Times New Roman", Times, serif;
 	font-style: italic;
 	color: #FFFFFF;
+	width: 900px;
+	text-align: center;
 }
 
 #logo #saldacao {
 	float: left;
-	margin-left: -210px;
-	margin-top: 5px;
+	margin-left: 330px;
+	margin-top: 50px;
 	padding: 26px 0 0 10px;
 	font: normal 14px Georgia, "Times New Roman", Times, serif;
 	font-style: italic;
@@ -514,8 +520,8 @@ a:hover {
 	margin: 0;
 	padding-top: 20px;
 	line-height: normal;
-	font-size: 10px;
-	text-transform: uppercase;
+	font-size: 12px;
+	text-transform: none;
 	text-align: center;
 	color: #A0A0A0;
 }
@@ -802,7 +808,13 @@ table tbody tr.dark{
 	
 /* mensagens */
 
-.msg {
+.msg_ok {
+	color: green;
+	}
+.msg_aviso {
+	color: blue;
+	}
+.msg_erro {
 	color: red;
 	}
 

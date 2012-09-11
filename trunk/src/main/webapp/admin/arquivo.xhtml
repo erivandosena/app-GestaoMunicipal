@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition template="/layout/layoutPrincipalAdmin.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns="http://www.w3.org/1999/xhtml">
+  
+  <ui:define name="gallery"></ui:define>
+
+  <ui:define name="post">
+    <fieldset>
+      <legend>Upload de arquivo</legend>
+      <h:messages styleClass="msg_ok" showSummary="#{true}" infoClass="msg_ok" warnClass="msg_aviso" errorClass="msg_erro" globalOnly="true" />
+      <h:form id="formDados" rendered="#{!arquivoBean.modoEdicao}" prependId="false">
+		<h:panelGrid columns="1">
+			<h:panelGroup>
+				<h:outputText value="Pesquisa " />
+				<h:inputText maxlength="30" size="30" value="#{arquivoBean.arq_nome}">
+					<f:ajax event="keyup" render="listagem" listener="#{arquivoBean.filtrar}" />
+				</h:inputText>
+			</h:panelGroup>
+		</h:panelGrid>
+        <h:dataTable value="#{arquivoBean.arquivos}" var="arquivo" id="listagem" border="0" width="620" >
+          <h:column>
+            <f:facet name="header">Nome</f:facet>
+            <h:outputText value="#{arquivo.arq_nome}" />
+          </h:column>
+          <h:column>
+            <f:facet name="header"></f:facet>
+            <h:commandLink value="Alterar" action="#{arquivoBean.atualizar}" >
+              <f:setPropertyActionListener target="#{arquivoBean.arquivo}" value="#{arquivo}" />
+            </h:commandLink>
+          </h:column>
+          <h:column>
+            <f:facet name="header"></f:facet>
+            <h:commandLink id="lnkDelete" value="Excluir" onclick="if (!confirm('Tem certeza que deseja excluir este registro?')) return false" action="#{arquivoBean.excluir}">
+              <f:setPropertyActionListener target="#{arquivoBean.arquivo}" value="#{arquivo}" />
+            </h:commandLink>
+          </h:column>
+        </h:dataTable>
+        <h:commandButton value="Cadastrar" actionListener="#{arquivoBean.incluir}" />
+        <h:commandButton value="Atualizar" action="#{arquivoBean.retornar}" immediate="true" />
+      </h:form>
+      <h:form id="formEdicao" rendered="#{arquivoBean.modoEdicao}" prependId="false">
+        <h:panelGrid columns="1" border="0" >
+			<h:outputLabel for="codigo" value="Código" rendered="#{!empty arquivoBean.arquivo.arq_cod}" styleClass=""/>
+			<h:inputText id="codigo" value="#{arquivoBean.arquivo.arq_cod}" rendered="#{!empty arquivoBean.arquivo.arq_cod}" readonly="#{!empty arquivoBean.arquivo.arq_cod}" styleClass=""/>
+			
+			<h:outputLabel for="nome" value="Nome" styleClass=""/>
+			<h:inputText id="nome" value="#{arquivoBean.arquivo.arq_nome}" size="60" maxlength="50" required="true" requiredMessage="Campo obrigatório." styleClass="" />
+			<h:message for="nome" styleClass="msg_erro" />
+			
+			
+		</h:panelGrid> 
+		
+        <h:commandButton value="Salvar" actionListener="#{arquivoBean.salvar}"/>
+        <h:commandButton value="Cancelar" action="#{arquivoBean.retornar}" immediate="true" />
+
+      </h:form>
+    </fieldset>
+  </ui:define>
+  
+</ui:composition>

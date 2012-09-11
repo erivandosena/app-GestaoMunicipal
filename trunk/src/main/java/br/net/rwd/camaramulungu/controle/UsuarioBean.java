@@ -9,6 +9,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import br.net.rwd.camaramulungu.entidade.Usuario;
 import br.net.rwd.camaramulungu.servico.UsuarioServico;
+import br.net.rwd.camaramulungu.util.Criptografia;
 
 @ManagedBean(name = "usuarioBean")
 @ViewScoped
@@ -167,15 +168,28 @@ public class UsuarioBean extends UtilBean implements CrudBeans<Object> {
 
 	@Override
 	public void salvar() {
-        if (usuario.getUsu_cod() == null || usuario.getUsu_cod().intValue() == 0) {
-            usuario = model.incluirUsuario(usuario);
-            usuario = new Usuario();
-            addInfoMessage("Usuario criado com sucesso.");
-            retornar();
+		Usuario usuarioExistente = model.selecionarUsuarioLogin(usuario.getUsu_email());
+		usuario.setUsu_senha(Criptografia.criptografarMD5(usuario.getUsu_senha()));
+        
+		if (usuario.getUsu_cod() == null || usuario.getUsu_cod().intValue() == 0) {	
+			
+        	if (usuarioExistente != null && usuarioExistente.getUsu_email().equals(usuario.getUsu_email())) {
+        		addInfoMessage("Usuário existente.");
+			} else { 
+	        	usuario = model.incluirUsuario(usuario);
+	            usuario = new Usuario();
+	            addInfoMessage("Usuario criado com sucesso.");
+	            retornar();
+			}
+        	
         } else {
+        	if (usuario.getUsu_nome().equals("Administrador")) {
+				addInfoMessage("Operação não permitida.");
+			} else {
             model.alterarUsuario(usuario);
             addInfoMessage("Usuario alterado com sucesso.");
             retornar();
+			}
         }	
 	}
 
@@ -186,14 +200,18 @@ public class UsuarioBean extends UtilBean implements CrudBeans<Object> {
 
 	@Override
 	public void excluir() {
-		model.excluirUsuario(usuario);
-		retornar();
+		if (usuario.getUsu_nome().equals("Administrador")) {
+			addInfoMessage("Operação não permitida.");
+		} else {
+			model.excluirUsuario(usuario);
+			retornar();
+		}
 	}
 
 	@Override
 	public void filtrar(AjaxBehaviorEvent event) {
         if (usu_nome != null && !usu_nome.isEmpty()) {
-            usuarios = model.listarUsuario(usu_nome);
+            usuarios = model.listarLikeUsuario("%"+usu_nome+"%");
         } else {
             usuarios = model.listarUsuarios();
         }

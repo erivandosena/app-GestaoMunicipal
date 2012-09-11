@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="robots" content="noindex, nofollow" />
+<title><ui:insert name="tituloJanela" ><h:outputText value="#{siteBean.carregarDados.web_titulo} - " rendered="#{!empty siteBean.carregarDados.web_titulo}" />Administrativo</ui:insert></title>
+
+<link rel="shortcut icon" type="image/x-icon" href="#{facesContext.externalContext.request.contextPath}/favicon.ico" />
+<link rel="icon" type="image/gif" href="#{facesContext.externalContext.request.contextPath}/animated_favicon1.gif" />
+<h:outputStylesheet library="css" name="style.css" target="body" />
+
+</h:head>
+<h:body>
+  <!-- form -->
+  <div id="wrapper">
+    <div id="header">
+      <div id="logo"> 
+    	<h1>
+      		<a href="index.jsf">Administrativo</a>
+    	</h1>
+    	<p>Visualizar <a href="#{facesContext.externalContext.requestContextPath}/home.jsf">Website</a></p>
+      </div>
+    </div>
+    <div id="page">
+      <div id="page-bgtop">
+        <div id="page-bgbtm">
+          <div id="content">
+            <div id="gallery">
+              <!-- inicio insert conteudo imagem --> 
+              <ui:insert name="gallery">
+                <ui:include src="/layout/layoutConteudoGaleria.xhtml" />
+              </ui:insert>
+              <!-- final insert conteudo imagem  -->
+	<!-- inicio gallery-bgthumb -->
+    <div id='cssmenu'>
+      <ul>
+        <li class='active'>
+          <a href='index.jsf'>
+            <span>Principal</span>
+          </a>
+        </li>
+        <li>
+          <a href='index.jsf'>
+            <span>Site</span>
+          </a>
+        </li>
+        <li>
+          <a href='arquivo.jsf'>
+            <span><h:outputText value="Arquivos"/></span>
+          </a>
+        </li>
+        <li>
+          <a href='usuario.jsf'>
+            <span><h:outputText value="Usuários"/></span>
+          </a>
+        </li>
+        <li>
+          <a href='#{facesContext.externalContext.requestContextPath}/j_spring_security_logout'>
+            <span>Sair</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div style="clear: both; margin: 0 0 30px 0;"></div>
+    <!-- fim gallery-bgthumb -->
+              
+              <!-- end --> 
+            </div>
+            <div class="post"> 
+              <!-- inicio insert conteudo -->
+              <ui:insert name="post">
+                <ui:include src="/layout/layoutConteudo.xhtml" />
+              </ui:insert>
+              <!-- final insert conteudo --> 
+            </div>
+            <div style="clear: both;">&#160;</div>
+          </div>
+          <!-- end #content -->
+          <div id="sidebar"> 
+    <ul>
+      <li>
+        <h2>Opções Úteis</h2>
+        <p>Aqui você poderá acessar as estatísticas de visitação do
+          website, configurar contas de e-mail e acessar outras informações
+          sobre o plano de hospedagem.</p>
+      </li>
+      <li>
+        <h2>Relatórios de acesso</h2>
+        <ul>
+          <li>
+            <a href="http://stats.porta80.com.br" target="_brank">Estatísticas</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2>Workspace Office</h2>
+        <ul>
+          <li>
+            <a href="http://www.workspace.com.br/camaramulungu/" target="_brank">Workspace</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2>RWD</h2>
+        <ul>
+          <li>
+            <a href="http://www.rwd.net.br" target="_brank">Desenvolvimento</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+          </div>
+          <!-- end #sidebar -->
+          <div style="clear: both;">&#160;</div>
+        </div>
+      </div>
+    </div>
+    <!-- end #page --> 
+  </div>
+  <div id="footer"> 
+    <!-- inicio insert rodape -->
+    <ui:insert name="footer">
+      <ui:include src="/layout/layoutRodape.xhtml" />
+    </ui:insert>
+    <!-- final insert rodape --> 
+  </div>
+  <!-- end #footer --> 
+<!-- /form -->
+</h:body>
+</html>

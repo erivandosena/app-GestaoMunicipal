@@ -1,56 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<ui:composition template="/layout/layoutPrincipal.xhtml"
+<ui:composition template="/layout/layoutPrincipalAdmin.xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns="http://www.w3.org/1999/xhtml">
   
-  <ui:define name="tituloJanela">#{siteBean.carregarDados.web_titulo} - Administrativo</ui:define>
-  
-  <ui:define name="logo">
-    <h1>
-      <a href="index.jsf">Administrativo</a>
-    </h1>
-    <p>Visualizar <a href="#{facesContext.externalContext.requestContextPath}/home.jsf">Website</a></p>
-  </ui:define>
-  
   <ui:define name="gallery"></ui:define>
-  
-  <ui:define name="gallery-bgthumb">
-    <div id='cssmenu'>
-      <ul>
-        <li class='active'>
-          <a href='index.jsf'>
-            <span>Principal</span>
-          </a>
-        </li>
-        <li>
-          <a href='index.jsf'>
-            <span>Site</span>
-          </a>
-        </li>
-        <li>
-          <a href='usuario.jsf'>
-            <span><h:outputText value="Usuários"/></span>
-          </a>
-        </li>
-        <li>
-          <a href='#{facesContext.externalContext.requestContextPath}/j_spring_security_logout'>
-            <span>Sair</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div style="clear: both; margin: 0 0 30px 0;"></div>
-  </ui:define>
-  
+
   <ui:define name="post">
     <fieldset>
       <legend>Cadastro do site</legend>
-      <h:messages globalOnly="true" />
-          <p:messages id="msg" autoUpdate="true" showDetail="true" />  
+      <h:messages globalOnly="true" showSummary="#{true}" infoClass="msg_ok" warnClass="msg_aviso" errorClass="msg_erro" />
       <h:form id="formDados" rendered="#{!siteBean.modoEdicao}" prependId="false">
         <h:dataTable value="#{siteBean.sites}" var="site" id="listagem" border="0" width="620">
           <h:column>
@@ -70,8 +32,10 @@
             </h:commandLink>
           </h:column>
         </h:dataTable>
-        <h:commandButton value="Cadastrar" actionListener="#{siteBean.incluir}" />
+        <h:commandButton value="Cadastrar" actionListener="#{siteBean.incluir}" rendered="#{siteBean.carregarDados eq null}"/>
+        <ui:remove>
         <h:commandButton value="Atualizar" action="#{siteBean.retornar}" />
+        </ui:remove>
       </h:form>
       <h:form id="formEdicao" rendered="#{siteBean.modoEdicao}" prependId="false">
         <h:panelGrid columns="1" border="0" >
@@ -80,7 +44,7 @@
           
           <h:outputLabel value="Título" styleClass="" />
           <h:inputText id="titulo" value="#{siteBean.site.web_titulo}" required="true" requiredMessage="Campo obrigatório." size="25" maxlength="100" styleClass="" />
-          <h:message for="titulo" styleClass="msg" />
+          <h:message for="titulo" styleClass="msg_erro" />
           
           <h:outputLabel value="Slogan" styleClass="" />
           <h:inputText id="slogan" value="#{siteBean.site.web_slogan}" size="50" maxlength="50" styleClass="" />
@@ -122,7 +86,7 @@
           
           <h:outputLabel value="E-mail" styleClass="" />
           <h:inputText id="email" value="#{siteBean.site.web_email}" size="40" maxlength="100" required="true" validator="#{uteis.validaEmail}" requiredMessage="Campo obrigatório." styleClass="" />
-          <h:message for="email" styleClass="msg" />
+          <h:message for="email" styleClass="msg_erro" />
           
           <!--
           <h:message for="email" styleClass="" />
@@ -168,38 +132,4 @@
     </fieldset>
   </ui:define>
   
-  <ui:define name="sidebar">
-    <ul>
-      <li>
-        <h2>Opções Úteis</h2>
-        <p>Aqui você poderá acessar as estatísticas de visitação do
-          website, configurar contas de e-mail e acessar outras informações
-          sobre o plano de hospedagem.</p>
-      </li>
-      <li>
-        <h2>Relatórios de acesso</h2>
-        <ul>
-          <li>
-            <a href="http://stats.porta80.com.br" target="_brank">Estatísticas</a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <h2>Workspace Office</h2>
-        <ul>
-          <li>
-            <a href="http://www.workspace.com.br/camaramulungu/" target="_brank">Workspace</a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <h2>RWD</h2>
-        <ul>
-          <li>
-            <a href="http://www.rwd.net.br" target="_brank">Desenvolvimento</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </ui:define>
 </ui:composition>
