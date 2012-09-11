@@ -13,7 +13,7 @@
 	<context:annotation-config />
 	
 	<!-- Define o pacote onde o Spring vai procurar por beans anotados -->
-	<context:component-scan base-package="br.net.rwd.camaramulungu.dao, br.net.rwd.camaramulungu.servico" />
+	<context:component-scan base-package="br.net.rwd.camaramulungu.dao, br.net.rwd.camaramulungu.servico, br.net.rwd.camaramulungu.controle" />
 	
 	<!-- define que as transaçoes irao ser anotadas -->
 	<tx:annotation-driven />
@@ -41,6 +41,13 @@
 	<!-- Configuracao do gerente de transacoes do Spring -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<!-- Envio de E-mail do Spring  -->
+	<bean id="enviarEmail" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="mail.camaramulungu.com.br"/>
+		<property name="username" value="camaramulungu@camaramulungu.com.br"/>
+		<property name="password" value="33281120"/>
 	</bean>
 	
 </beans>

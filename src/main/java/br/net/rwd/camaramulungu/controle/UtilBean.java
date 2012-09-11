@@ -1,6 +1,5 @@
 package br.net.rwd.camaramulungu.controle;
 
-import java.io.Serializable;
 import java.util.Map;
 
 import javax.faces.application.FacesMessage;
@@ -10,12 +9,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UtilBean implements Serializable {
-
-   /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class UtilBean  {
     
     private static void addMessage(String componentId, String errorMessage, FacesMessage.Severity severity) {
 		FacesMessage message = new FacesMessage(errorMessage);
