@@ -23,24 +23,15 @@
       </p>
       <div style="clear: both;">&#160;</div>
       <div class="entry">
-        <p:messages id="mensagens" showDetail="true" showSummary="false" />
-        <h:panelGrid columns="2">
-          <strong>
-            <h:outputLabel value="Usuário" />
-          </strong>
-          <br />
+        <h:panelGrid columns="1">
+          <h:outputLabel value="Usuário" />
           <h:inputText id="_j_username" value="#{loginBean.usuario}" size="15" />
-          <br />
-          <strong>
-            <h:outputLabel value="Senha" />
-          </strong>
-          <br />
+          <h:outputLabel value="Senha" />
           <h:inputSecret id="_j_password" value="#{loginBean.senha}" size="15" />
-          <br />
           <h:commandButton value="Entrar" action="#{loginBean.logar}" />
         </h:panelGrid>
+        <p class="links">Esqueceu a senha? <a href="#">Recuperar senha</a></p>
       </div>
-      <p class="links">Esqueceu a senha? <a href="#">Recuperar senha</a></p>
     </h:form>
   </ui:define>
 </ui:composition>
