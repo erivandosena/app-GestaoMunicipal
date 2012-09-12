@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+						<div id="gallery">
+							<!--  <div id="gallery-background"><h:graphicImage library="images" name="img06.png" alt=""  width="600" height="340" styleClass="output"/></div> -->
+							<div id="gallery-bgthumb">
+								<ul class="thumbnails">
+									<li><h:graphicImage library="images" name="img06.png" title="LA Skyline ; Upwards shot of a small portion of Los Angeles' skyline." alt="" width="128" height="88" /></li>
+									<li><h:graphicImage library="images" name="6.jpg" title="Leaf ; A close up shot of a green leaf." alt="" width="100" height="75" /></li>
+									<li><h:graphicImage library="images" name="7.jpg" title="Chinese Bell ; A large bell inscribed with Chinese characters." alt="" width="100" height="75" /></li>
+									<li><h:graphicImage library="images" name="8.jpg" title="Ladybird ; A close up shot of a ladybird making its way across a leaf." alt="" width="100" height="75" /></li>
+								</ul>
+								<br class="clear" />
+							</div>
+						<script type="text/javascript">
+
+						$('#gallery').gallerax({
+							//outputSelector: 		'.output',					// Output selector
+							thumbnailsSelector:		'.thumbnails li img',		// Thumbnails selector
+							fade: 					'fast',						// Transition speed (fast)
+							navNextSelector:		'.nav li a.navNext',		// 'Next' selector
+							navPreviousSelector:	'.nav li a.navPrevious'		// 'Previous' selector
+						});
+
+						</script>
+						<!-- end -->
+						</div>
+		
+</ui:composition>

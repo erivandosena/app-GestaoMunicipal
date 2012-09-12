@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+    <h1>
+      <a href="home.jsf">#{siteBean.carregarDados.web_titulo}</a>
+    </h1>
+    <p><h:outputText value="#{siteBean.carregarDados.web_slogan}" /></p>
+    <p id="saldacao">
+    	#{siteBean.saldacao} <strong>#{loginBean.usuarioLogado}</strong> | 
+		<h:link value=" Login" outcome="/admin/index.jsf" rendered="#{loginBean.statusLogado eq false}"/>
+    	<h:outputLink  value="#{request.contextPath}/j_spring_security_logout" rendered="#{loginBean.statusLogado eq true}"> Sair (<a href="#{request.contextPath}/admin/index.jsf">Administrativo</a>)</h:outputLink>
+    </p>
+		
+</ui:composition>
