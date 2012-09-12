@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+   <h:head>
+   
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta name="robots" content="noindex, nofollow" />
+   <title><h:outputText value="#{siteBean.carregarDados.web_titulo} - " rendered="#{!empty siteBean.carregarDados.web_titulo}" />Acesso negado</title>
+   <link rel="shortcut icon" type="image/x-icon" href="#{facesContext.externalContext.request.contextPath}/favicon.ico" />
+   <link rel="icon" type="image/gif" href="#{facesContext.externalContext.request.contextPath}/animated_favicon1.gif" />
+   <h:outputStylesheet library="css" name="style.css" target="body" />
+   
+   </h:head> 
+   <h:body>     
+  		
+	<p:dialog style="color:#fff;font-weight:bold;font-size:10pt;"
+		header="Ops! Acesso não autorizado!" 
+		modal="true" 
+		closable="true"
+	    position="center" 
+	    widgetVar="modalNegado" 
+	    minWidth="600" 
+	    width="650"
+		showEffect="shake" 
+		draggable="true" 
+		resizable="true" 
+		visible="true">
+		
+		<center>
+			<h:graphicImage library="images" name="logo_camara_mulungu.jpg" alt=""  width="600" height="340" styleClass=""/>
+			<br /><br /><br /> 
+			<a href="#{facesContext.externalContext.requestContextPath}/login.jsf">Voltar</a>
+	   </center>
+
+	</p:dialog>
+
+	</h:body>
+</html>

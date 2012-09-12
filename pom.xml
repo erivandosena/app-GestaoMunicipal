@@ -6,7 +6,7 @@
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>CamaraMulungu Maven Webapp</name>
-  <description>Projeto iniciado em 05/09/2012</description>
+  <description>Projeto iniciado em 05/09/2012, finalizado para teste em 12/09/2012</description>
   <url>http://maven.apache.org</url>
 	<properties>
 		<org.springframework.version>3.0.5.RELEASE</org.springframework.version>
@@ -118,7 +118,7 @@
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>8.4-702.jdbc4</version>
+			<version>8.3-606.jdbc4</version>
 		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
@@ -126,31 +126,19 @@
 			<version>2.2.2</version>
 		</dependency>
 		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>  
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4jVersion}</version>
 		</dependency>
-		<!-- ESCOLHER ENTRE UMAS DESTAS ligacoes diferentes -->
-		<!-- Ligacao para NOP, silenciosamente, descartando todos os logs. <dependency> 
-			<groupId>org.slf4j</groupId> <artifactId>slf4j-nop</artifactId> <version>${slf4jVersion}</version> 
-			</dependency> -->
-		<!-- Ligacao para System.out -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
+			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4jVersion}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4jVersion}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-			<!-- <scope>runtime</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -195,7 +183,7 @@
 	</repositories>
 
 	<build>
-		<finalName>WebSite</finalName>
+		<finalName>ROOT</finalName>
 		<defaultGoal>install</defaultGoal>
 		<plugins>
 			<plugin>
@@ -228,6 +216,13 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 </project>
