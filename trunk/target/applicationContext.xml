@@ -20,14 +20,10 @@
 	
 	<!-- Configuracao do Banco de Dados -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver" />
-   <!-- <property name="url" value="jdbc:postgresql://localhost:5432/camaramulungu" />
-		<property name="username" value="postgres" />
-		<property name="password" value="postgres" /> -->
-        <property name="url" value="jdbc:postgresql://pgsql.porta80.com.br:5432/camaramulungu" />
-        <property name="username" value="camaramulungu" />
-		<property name="password" value="33281120" /> 
-		
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://www.pgsql.porta80.com.br:5432/camaramulungu" />
+		<property name="username" value="camaramulungu" />
+		<property name="password" value="33281120" />
 	</bean>
 
 	<!-- Configuracao do Hibernate -->
@@ -37,7 +33,7 @@
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect" />
-				<property name="showSql" value="false" />
+				<property name="showSql" value="true" />
 			</bean>
 		</property>
 	</bean>
