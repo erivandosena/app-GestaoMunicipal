@@ -1,125 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	id="WebApp_ID" version="3.0" metadata-complete="true">
-	<display-name>Camara Municipal de Mulungu Website Application</display-name>
-	
-	<!-- Spring -->
-	<description>Spring Framework</description>
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" metadata-complete="true" version="3.0">
+  <display-name>Camara Municipal de Mulungu Website Application</display-name>
+  <description>Spring Framework</description>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
 		/WEB-INF/applicationContext.xml
         /WEB-INF/spring-security-config.xml
 		</param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
-	
-	<!-- Spring Security -->
-	<description>Spring Security - Filtro de seguranca</description>
-	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
-		<dispatcher>FORWARD</dispatcher>
-		<dispatcher>REQUEST</dispatcher>
-	</filter-mapping>
-	
-	<!-- Java Server Faces -->
-	<description>JSF</description>
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.jsf</url-pattern>
-	</servlet-mapping>
-	
-	<!-- PrimeFaces -->
-	<description>PrimeFaces</description>
-	<context-param>
-		<param-name>primefaces.THEME</param-name>
-		<param-value>none</param-value>
-	</context-param>
-	
-	<filter>
-		<filter-name>PrimeFaces FileUpload Filter</filter-name>
-		<filter-class>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  <description>Spring Security - Filtro de seguranca</description>
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  <description>JSF</description>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.jsf</url-pattern>
+  </servlet-mapping>
+  <description>PrimeFaces</description>
+  <context-param>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>none</param-value>
+  </context-param>
+  <filter>
+    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+    <filter-class>
 			org.primefaces.webapp.filter.FileUploadFilter
 		</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>PrimeFaces FileUpload Filter</filter-name>
-		<servlet-name>Faces Servlet</servlet-name>
-	</filter-mapping>
-	
-	<servlet>
-		<servlet-name>Resource Servlet</servlet-name>
-		<servlet-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+    <servlet-name>Faces Servlet</servlet-name>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>Resource Servlet</servlet-name>
+    <servlet-class>
 			org.primefaces.resource.ResourceServlet
 		</servlet-class>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>Resource Servlet</servlet-name>
-		<url-pattern>/primefaces_resource/*</url-pattern>
-	</servlet-mapping>
-
-	<!-- log4j -->
-	<description>Log4J</description>
-	<context-param>
-		<param-name>log4jConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/log4j.properties</param-value>
-	</context-param>
-
-	<!-- Encoding UTF-8 -->
-	<filter>
-		<filter-name>EncodingFilter</filter-name>
-		<filter-class>br.net.rwd.camaramulungu.util.FiltroEncoding</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>EncodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<!-- aplicacao -->
-    <description>Remove atributo autocomplete para validacao W3C</description>
-	<context-param>
-		<param-name>com.sun.faces.autoCompleteOffOnViewState</param-name>
-		<param-value>false</param-value>
-	</context-param>
-	<description>Arquivos procurados na inicializacao</description>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
-
-	<session-config>
-		<session-timeout>45</session-timeout>
-	</session-config>
-
-	<!--  
-	<error-page>
-		<exception-type>javax.servlet.ServletException</exception-type>
-		<location>/index.jsp</location>
-	</error-page> 
-	-->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Resource Servlet</servlet-name>
+    <url-pattern>/primefaces_resource/*</url-pattern>
+  </servlet-mapping>
+  <description>Log4J</description>
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>/WEB-INF/classes/log4j.properties</param-value>
+  </context-param>
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>br.net.rwd.camaramulungu.util.FiltroEncoding</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <description>Remove atributo autocomplete para validacao W3C</description>
+  <context-param>
+    <param-name>com.sun.faces.autoCompleteOffOnViewState</param-name>
+    <param-value>false</param-value>
+  </context-param>
+  <description>Arquivos procurados na inicializacao</description>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <session-config>
+    <session-timeout>45</session-timeout>
+  </session-config>
 </web-app>
