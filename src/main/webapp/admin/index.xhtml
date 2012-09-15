@@ -67,20 +67,12 @@
           <h:outputLabel value="CEP" styleClass="" />
           <h:inputText id="cep" value="#{siteBean.site.web_cep}" size="10" maxlength="10" styleClass="" />
           
-          <!--  
-			<h:outputLabel value="#{msg.estado}" styleClass=""/>
-			<h:selectOneMenu id="estado" value="#{siteBean.site.web_estado}" onchange="submit()" valueChangeListener="#{websiteControlador.retornaUf}" styleClass="">
-				<f:selectItem itemValue="" itemLabel="#{msg.selecione}" /> 
-				<f:selectItems value="#{ufEstados.estados}" />	
-			</h:selectOneMenu> 
-			
-			<h:outputLabel value="#{msg.cidade}" styleClass=""/>
-			<h:selectOneMenu id="cidade" value="#{siteBean.site.web_cidade}" styleClass="">
-				<f:selectItem itemValue="" itemLabel="#{msg.selecione}" /> 
-				<f:selectItems value="#{websiteControlador.cidades}" />	
-			</h:selectOneMenu>
-			-->
+          <h:outputLabel value="Cidade" styleClass="" />
+          <h:inputText id="cidade" value="#{siteBean.site.web_cidade}" size="25" maxlength="40" styleClass="" />
           
+          <h:outputLabel value="UF do Estado" styleClass="" />
+          <h:inputText id="ufestado" value="#{siteBean.site.web_estado}" size="5" maxlength="2" styleClass="" />
+
           <h:outputLabel value="Telefone" styleClass="" />
           <h:inputText id="telefone" value="#{siteBean.site.web_telefone}" size="10" maxlength="15" styleClass="" />
           

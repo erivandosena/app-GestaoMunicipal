@@ -57,11 +57,11 @@
 			<h:message for="nome" styleClass="msg_erro" />
 			
 			<h:outputLabel for="email" value="E-mail" styleClass=""/>
-			<h:inputText id="email" value="#{usuarioBean.usuario.usu_email}" validator="#{uteis.validaEmail}" size="25" maxlength="100" required="true" requiredMessage="Campo obrigatório." styleClass=""/>
+			<h:inputText id="email" value="#{usuarioBean.usuario.usu_email}" size="25" maxlength="100" required="true" validator="#{uteis.validaEmail}" requiredMessage="Campo obrigatório." styleClass=""/>
 			<h:message for="email" styleClass="msg_erro" />
 			
 			<h:outputLabel for="senha" value="Senha" styleClass=""/>
-			<h:inputSecret id="senha" value="#{usuarioBean.usuario.usu_senha}" size="15" maxlength="25" required="true" validator="#{uteis.validaEmail}" requiredMessage="Campo obrigatório." styleClass=""/>
+			<h:inputSecret id="senha" value="#{usuarioBean.usuario.usu_senha}" size="15" maxlength="25" required="true" requiredMessage="Campo obrigatório." styleClass=""/>
 			<h:message for="senha" styleClass="msg_erro" />
 			
 			<h:outputLabel for="perfil" value="Perfil" styleClass=""/>
