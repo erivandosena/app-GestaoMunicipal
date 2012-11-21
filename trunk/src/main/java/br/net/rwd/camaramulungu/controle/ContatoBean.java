@@ -108,10 +108,10 @@ public class ContatoBean extends UtilBean {
 			email = "";
 			assunto = "";
 			mensagem = "";
-			addInfoMessage("Enviado com sucesso!");
+			addInfoMensagem("Enviado com sucesso!");
 			return "contato";
 		} catch (MailException ex) {
-			addInfoMessage("Erro ao enviar.");
+			addInfoMensagem("Erro ao enviar.");
 		}
 		return null;
 	}

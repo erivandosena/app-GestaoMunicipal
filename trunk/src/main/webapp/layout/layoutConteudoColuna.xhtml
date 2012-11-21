@@ -36,12 +36,32 @@
 								<li><a href="#{facesContext.externalContext.request.contextPath}/uploads/HISTORICO_MULUNGU_1959_2011.docx" target="_blank">Mulungu</a></li>
 							</ul>
 						</li>
+						<!--  
 						<li>
 							<h2>Relatórios</h2>
 							<ul>
-								<li><a href="#{facesContext.externalContext.request.contextPath}/uploads/documentos.pdf#" target="_self">Relatório de gestão fiscal - RGF</a></li>
+								<li><a href="#{facesContext.externalContext.request.contextPath}/uploads/RGF_primeiro_semestre2012.pdf#" target="_self">RGF - Relatório de gestão fiscal - 2012/1</a></li>
+							</ul>
+							<ul>
+								<li><a href="#{facesContext.externalContext.request.contextPath}/uploads/RGF_segundo_semestre2011.pdf#" target="_self">RGF - Relatório de gestão fiscal - 2011/2</a></li>
+							</ul>
+							<ul>
+								<li><a href="#{facesContext.externalContext.request.contextPath}/uploads/RGF_primeiro_semestre2011.pdf#" target="_self">RGF - Relatório de gestão fiscal - 2011/1</a></li>
 							</ul>
 						</li>
+						-->
+						
+	 						<h:panelGroup rendered="#{!empty arquivoBean.arquivosDownload}">
+							<li>
+								<h2>Relatórios</h2>
+								<ul>
+          						<ui:repeat value="#{arquivoBean.arquivosDownload}" var="item">
+          						<li><a href="#{facesContext.externalContext.request.contextPath}/uploads/arquivos/#{item.arq_local}#" title="#{item.arq_nome}" target="_blank">#{item.arq_nome}</a></li>
+          						</ui:repeat>
+        						</ul>
+        					</li>
+      						</h:panelGroup>
+						
 						<li>
 							<h2>Contato</h2>
 							<ul>
@@ -49,5 +69,5 @@
 							</ul>
 						</li>
 					</ul>
-		
+							
 </ui:composition>
