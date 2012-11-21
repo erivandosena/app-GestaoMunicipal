@@ -6,6 +6,8 @@
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	
-							<div id="gallery-background"><h:graphicImage library="images" name="logo_camara_mulungu.jpg" alt=""  width="600" height="340" styleClass="output"/></div>
+							<div id="gallery-background">
+							<h:graphicImage library="images" name="#{siteBean.carregarDados.web_img_nome}" alt="#{siteBean.carregarDados.web_titulo}" title="#{siteBean.carregarDados.web_titulo}" rendered="#{!empty siteBean.carregarDados.web_img_nome}" styleClass="output"/>
+							</div>
 							
 </ui:composition>

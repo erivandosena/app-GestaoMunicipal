@@ -174,20 +174,20 @@ public class UsuarioBean extends UtilBean implements CrudBeans<Object> {
 		if (usuario.getUsu_cod() == null || usuario.getUsu_cod().intValue() == 0) {	
 			
         	if (usuarioExistente != null && usuarioExistente.getUsu_email().equals(usuario.getUsu_email())) {
-        		addInfoMessage("Usuário existente.");
+        		addInfoMensagem("Usuário existente.");
 			} else { 
 	        	usuario = model.incluirUsuario(usuario);
 	            usuario = new Usuario();
-	            addInfoMessage("Usuario criado com sucesso.");
+	            addInfoMensagem("Usuario criado com sucesso.");
 	            retornar();
 			}
         	
         } else {
         	if (usuario.getUsu_nome().equals("Administrador")) {
-				addInfoMessage("Operação não permitida.");
+        		addInfoMensagem("Operação não permitida.");
 			} else {
             model.alterarUsuario(usuario);
-            addInfoMessage("Usuario alterado com sucesso.");
+            addInfoMensagem("Usuario alterado com sucesso.");
             retornar();
 			}
         }	
@@ -201,7 +201,7 @@ public class UsuarioBean extends UtilBean implements CrudBeans<Object> {
 	@Override
 	public void excluir() {
 		if (usuario.getUsu_nome().equals("Administrador")) {
-			addInfoMessage("Operação não permitida.");
+			addInfoMensagem("Operação não permitida.");
 		} else {
 			model.excluirUsuario(usuario);
 			retornar();

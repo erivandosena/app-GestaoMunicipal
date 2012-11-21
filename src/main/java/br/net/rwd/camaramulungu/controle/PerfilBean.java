@@ -99,11 +99,11 @@ public class PerfilBean extends UtilBean implements CrudBeans<Object> {
         if (perfil.getPer_cod() == null || perfil.getPer_cod().intValue() == 0) {
             perfil = model.incluirPerfil(perfil);
             perfil = new Perfil();
-            addInfoMessage("Perfil criado com sucesso.");
+            addInfoMensagem("Perfil criado com sucesso.");
             retornar();
         } else {
             model.alterarPerfil(perfil);
-            addInfoMessage("Perfil alterado com sucesso.");
+            addInfoMensagem("Perfil alterado com sucesso.");
             retornar();
         }	
 	}

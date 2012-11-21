@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns="http://www.w3.org/1999/xhtml">
   
   <ui:define name="gallery"></ui:define>
@@ -45,17 +45,32 @@
       </h:form>
       <h:form id="formEdicao" rendered="#{arquivoBean.modoEdicao}" prependId="false">
         <h:panelGrid columns="1" border="0" >
-			<h:outputLabel for="codigo" value="Código" rendered="#{!empty arquivoBean.arquivo.arq_cod}" styleClass=""/>
-			<h:inputText id="codigo" value="#{arquivoBean.arquivo.arq_cod}" rendered="#{!empty arquivoBean.arquivo.arq_cod}" readonly="#{!empty arquivoBean.arquivo.arq_cod}" styleClass=""/>
-			
 			<h:outputLabel for="nome" value="Nome" styleClass=""/>
 			<h:inputText id="nome" value="#{arquivoBean.arquivo.arq_nome}" size="60" maxlength="50" required="true" requiredMessage="Campo obrigatório." styleClass="" />
 			<h:message for="nome" styleClass="msg_erro" />
 			
+			<h:outputLabel for="upload" value="Arquivo para upload" />
+  			<p:fileUpload id="upload" fileUploadListener="#{arquivoBean.handleFileUpload}" 
+  				sizeLimit="52428800" 
+  				auto="true" 
+  				label="Localizar..." 
+   	 			allowTypes="/(\.|\/)(pdf|PDF|doc|DOC|docx|DOCX|xls|XLS|xlsx|XLSX)$/" 
+   	 			multiple="false" 
+  				description="Documentos PDF, Word, Excel" 
+  				update="btSalvar,msg" 
+  			/>
+  			<h:outputText id="msg" value="#{arquivoBean.mensagemUpload}" escape="false"/>
+  		
+  		 <h:panelGroup rendered="#{!empty arquivoBean.arquivo.arq_nome}">
+  		  <h:outputLabel value="Arquivo carregado"/>
+  		  <ul>
+		  <li><a href="#{facesContext.externalContext.request.contextPath}/uploads/arquivos/#{arquivoBean.arquivo.arq_local}#" target="_blank">#{arquivoBean.arquivo.arq_nome}</a></li>
+		  </ul>
+        </h:panelGroup>
 			
 		</h:panelGrid> 
 		
-        <h:commandButton value="Salvar" actionListener="#{arquivoBean.salvar}"/>
+        <h:commandButton id="btSalvar" value="Salvar" actionListener="#{arquivoBean.salvar}" disabled="#{arquivoBean.bytesArquivo eq null}"/>
         <h:commandButton value="Cancelar" action="#{arquivoBean.retornar}" immediate="true" />
 
       </h:form>

@@ -17,21 +17,17 @@ public class UtilBean  {
 		FacesContext.getCurrentInstance().addMessage(componentId, message);
 	}
 
-    public static void addErrorMessage(String msg) {
-        addMessage(null,msg,FacesMessage.SEVERITY_ERROR);
-    }
- 
-    public static void addSuccessMessage(String msg) {
+    public static void addInfoMensagem(String msg) {
         addMessage(null,msg,FacesMessage.SEVERITY_INFO);
     }
     
-    protected void addInfoMessage(String componentId, String infoMessage) {
-		addMessage(componentId, infoMessage, FacesMessage.SEVERITY_INFO);
-	}
-
-	protected void addInfoMessage(String infoMessage) {
-		addInfoMessage(null, infoMessage);
-	}
+    public static void addAvisoMensagem(String msg) {
+        addMessage(null,msg,FacesMessage.SEVERITY_WARN);
+    }
+    
+    public static void addErroMensagem(String msg) {
+        addMessage(null,msg,FacesMessage.SEVERITY_ERROR);
+    }
 	
 	/*
 	 * 
