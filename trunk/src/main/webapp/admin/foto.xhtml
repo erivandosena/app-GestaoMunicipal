@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition template="/layout/layoutPrincipalAdmin.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns="http://www.w3.org/1999/xhtml">
+	
+	<ui:define name="gallery">
+	</ui:define>
+
+    <ui:define name="post">
+	
+	<fieldset style="width: 595px;"><legend>Cadastro de Fotos</legend>
+
+      <h:form id="formDados" rendered="#{!fotoBean.modoEdicao}" prependId="false">
+      <p:messages id="mensagens" showSummary="#{true}" autoUpdate="#{true}" /> 
+        <h:dataTable value="#{fotoBean.fotos}" var="foto" id="listagem" border="0" style="width: 595px;">
+          <h:column>
+            <f:facet name="header">Foto</f:facet>
+            <a href="#" title="#{foto.fot_descricao}">
+            <img src="#{facesContext.externalContext.request.contextPath}/uploads/fotos/#{foto.fot_foto}" border="1" height="80" alt="" />
+            </a>
+          </h:column>
+          <h:column>
+            <f:facet name="header"></f:facet>
+            <h:commandLink value="Alterar" action="#{fotoBean.atualizar}" >
+              <f:setPropertyActionListener target="#{fotoBean.foto}" value="#{foto}" />
+            </h:commandLink>
+          </h:column>
+          <h:column>
+            <f:facet name="header"></f:facet>
+            <h:commandLink id="lnkDelete" value="Excluir" action="#{fotoBean.excluir}" onclick="if (!confirm('Tem certeza que deseja excluir este registro?')) return false" >
+              <f:setPropertyActionListener target="#{fotoBean.foto}" value="#{foto}" />
+            </h:commandLink>
+          </h:column>
+        </h:dataTable>
+        <h:commandButton value="Cadastrar" actionListener="#{fotoBean.incluir}" />
+        <h:commandButton value="Atualizar" action="#{fotoBean.retornar}" immediate="true" />
+      </h:form>
+      
+      <h:form id="formEdicao" rendered="#{fotoBean.modoEdicao}" prependId="false">
+	  <h:panelGrid columns="1" border="0">
+      
+      <h:outputLabel for="descricao" value="Descrição resumida da foto" />
+	  <p:inputTextarea id="descricao" rows="3" cols="79" maxlength="255" value="#{fotoBean.foto.fot_descricao}" />
+	  
+	  <h:outputLabel for="upload" value="Upload da foto"/>
+      <p:fileUpload id="upload" 
+                    fileUploadListener="#{fotoBean.handleFileUpload}" 
+      				sizeLimit="52428800" 
+      				auto="true" 
+      				label="Localizar..." 
+     	 			allowTypes="/(\.|\/)(jpe?g|JPE?G)$/" 
+     	 			multiple="false" 
+      				description="Imagem JPG" 
+      				update="btSalvar,imagem" 
+      				/>
+	  </h:panelGrid>
+
+	  <h:panelGroup rendered="#{!empty arquivoBean.arquivo.arq_nome}">
+	  <h:outputLabel for="imagem" value="Foto carregada" />
+	  <div style="width: 595px; height: auto; overflow: hidden;">
+	  <h:graphicImage id="imagem" value="#{facesContext.externalContext.request.contextPath}/uploads/fotos/#{arquivoBean.arquivo.arq_local}" cache="false" style="border:none;"/>
+	  </div>
+	  </h:panelGroup>
+
+      <h:commandButton id="btSalvar" value="Salvar" actionListener="#{fotoBean.salvar}" disabled="#{fotoBean.bytesFoto eq null}"/>
+      <h:commandButton value="Cancelar" action="#{fotoBean.retornar}" immediate="true" />
+      </h:form>
+
+    </fieldset>
+	
+    </ui:define>
+  
+</ui:composition>

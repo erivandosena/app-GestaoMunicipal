@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition template="/layout/layoutPrincipal.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns="http://www.w3.org/1999/xhtml">
+	
+   <ui:define name="tituloJanela"><h:outputText value="#{siteBean.carregarDados.web_titulo} - " rendered="#{!empty siteBean.carregarDados.web_titulo}" />#{paginaBean.conteudoPagina.pag_titulo}</ui:define>
+
+  <ui:define name="gallery-bgthumb">
+  </ui:define>
+  
+  <ui:define name="post">
+			<h2 class="title">
+				<a href="#">#{paginaBean.conteudoPagina.pag_titulo}</a>
+			</h2>
+			<div class="entry">
+				<h:outputText value="#{paginaBean.conteudoPagina.pag_conteudo}" escape="false"/>
+  				<br /><br /><br />
+  				<h:outputText value="#{paginaBean.conteudoPagina.pag_extra}" escape="false"/>
+			</div>
+  </ui:define>
+</ui:composition>
