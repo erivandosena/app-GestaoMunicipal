@@ -15,7 +15,7 @@
   <ui:define name="post">
 		<h:form id="formContato" prependId="false">
 			<h2 class="title">
-				<h:commandLink value="Contato" onclick="#" />
+				<a href="#">Contato</a>
 			</h2>
 			<div class="entry">
 				<h:panelGrid columns="1">
@@ -48,7 +48,7 @@
 						</h2>
 						<br />
 						<h:outputText value="#{item.web_endereco}, #{item.web_numero} #{item.web_bairro}" />
-						<h:outputText value="CEP:#{item.web_cep} #{item.web_cidade} #{item.web_estado}" />
+						<h:outputText value=" CEP:#{item.web_cep} #{item.web_cidade} #{item.web_estado}" />
 						<br />
 						<br />
 					</h:panelGroup>

@@ -6,46 +6,17 @@
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	
+				<h:panelGroup rendered="#{!empty fotoBean.galeriaFotos}">
 				<div id="gallery-bgthumb">
                 <ul id="bgthumb" class="jcarousel-skin-tango">
+                <ui:repeat value="#{fotoBean.galeriaFotos}" var="item">
                   <li>
-                    <a href="#{facesContext.externalContext.request.contextPath}/resources/images/galeria/GEDC0001.jpg"><h:graphicImage library="images/galeria" name="GEDC0001.jpg" class="" title="" alt="" width="100" height="75" /></a>
+                    <a href="#{facesContext.externalContext.request.contextPath}/uploads/fotos/#{item.fot_foto}"><h:graphicImage value="#{facesContext.externalContext.request.contextPath}/uploads/fotos/#{item.fot_foto}" title="#{item.fot_descricao}" alt="" width="100" height="75" /></a>
                   </li>
-                  <li>
-                    <a href="#{facesContext.externalContext.request.contextPath}/resources/images/galeria/GEDC0002.jpg"><h:graphicImage library="images/galeria" name="GEDC0002.jpg" class="" title="" alt="" width="100" height="75" /></a>
-                  </li>
-                  <li>
-                    <a href="#{facesContext.externalContext.request.contextPath}/resources/images/galeria/GEDC0003.jpg"><h:graphicImage library="images/galeria" name="GEDC0003.jpg" class="" title="" alt="" width="100" height="75" /></a>
-                  </li>
-                  <li>
-                    <a href="#{facesContext.externalContext.request.contextPath}/resources/images/galeria/GEDC0004.jpg"><h:graphicImage library="images/galeria" name="GEDC0004.jpg" class="" title="" alt="" width="100" height="75" /></a>
-                  </li>
-                  <li>
-                    <a href="#{facesContext.externalContext.request.contextPath}/resources/images/galeria/GEDC0005.jpg"><h:graphicImage library="images/galeria" name="GEDC0005.jpg" class="" title="" alt="" width="100" height="75" /></a>
-                  </li>
-                  <li>
-                    <a href="#{facesContext.externalContext.request.contextPath}/resources/images/galeria/GEDC0006.jpg"><h:graphicImage library="images/galeria" name="GEDC0006.jpg" class="" title="" alt="" width="100" height="75" /></a>
-                  </li>
-                  <li>
-                    <a href="#{facesContext.externalContext.request.contextPath}/resources/images/logo_camara_mulungu.jpg"><h:graphicImage library="images" name="logo_camara_mulungu.jpg" class="" title="" alt="" width="100" height="75" /></a>
-                  </li>
+                </ui:repeat>
                 </ul>
                 <br class="clear" />
                 </div>
-                 
-                <!--  
-                <script type="text/javascript">
-
-						$('#gallery').gallerax({
-							outputSelector: 		'.output',					// Output selector
-							thumbnailsSelector:		'.jcarousel-skin-tango li img',		// Thumbnails selector
-							fade: 					'fast',						// Transition speed (fast)
-							navNextSelector:		'.nav li a.navNext',		// 'Next' selector
-							navPreviousSelector:	'.nav li a.navPrevious'		// 'Previous' selector
-						});
-
-			   </script> 
-			   -->
-			   
-							
+                </h:panelGroup>
+			
 </ui:composition>

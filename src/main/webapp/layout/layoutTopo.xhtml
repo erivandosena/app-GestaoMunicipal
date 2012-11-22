@@ -7,13 +7,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	
     <h1>
-      <a href="home.jsf">#{siteBean.carregarDados.web_titulo}</a>
+      <h:link value="#{siteBean.carregarDados.web_titulo}" outcome="/home.jsf" title="#{siteBean.carregarDados.web_titulo}"/>
     </h1>
     <p><h:outputText value="#{siteBean.carregarDados.web_slogan}" /></p>
+    
     <p id="saldacao">
-    	#{siteBean.saldacao} <strong>#{loginBean.usuarioLogado}</strong> | 
-		<h:link value=" Login" outcome="/admin/index.jsf" rendered="#{loginBean.statusLogado eq false}"/>
-    	<h:outputLink  value="#{request.contextPath}/j_spring_security_logout" rendered="#{loginBean.statusLogado eq true}"> Sair (<a href="#{request.contextPath}/admin/index.jsf">Administrativo</a>)</h:outputLink>
+    	#{siteBean.saldacao} <strong>#{loginBean.usuarioLogado}</strong> <br /> 
+		<h:link value=" Login" outcome="/login.jsf" rendered="#{loginBean.statusLogado eq false}" title="Login de usuário"/>
+    	<h:outputLink value="#{request.contextPath}/j_spring_security_logout" rendered="#{loginBean.statusLogado eq true}"> Sair (<h:link value="Administrativo" outcome="/admin/index.jsf" title="Área restrita"/>)</h:outputLink>
     </p>
 		
 </ui:composition>
