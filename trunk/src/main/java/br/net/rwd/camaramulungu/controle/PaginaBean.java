@@ -52,7 +52,7 @@ public class PaginaBean extends UtilBean implements CrudBeans<Object> {
 
 	public List<Pagina> getPaginas() {
 		if (paginas == null) {
-			paginas = model.listarPagina();
+			paginas = model.listarPaginas();
 		}
 		return paginas;
 	}
@@ -155,14 +155,14 @@ public class PaginaBean extends UtilBean implements CrudBeans<Object> {
         if (pag_titulo != null && !pag_titulo.isEmpty()) {
             paginas = model.listarPagina(pag_titulo);
         } else {
-            paginas = model.listarPagina();
+            paginas = model.listarPaginas();
         }
 	}
 
 	@Override
 	public String retornar() {
         this.modoEdicao = false;
-        paginas = model.listarPagina();
+        paginas = model.listarPaginas();
         return "pagina";
 	}
 	
@@ -175,8 +175,6 @@ public class PaginaBean extends UtilBean implements CrudBeans<Object> {
 	}  
 	
 	public Pagina getConteudoPagina() throws IOException {
-		// captura o codigo por GET. Exibe a pagina selecionada
-		//String cod = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("p");
 		try {
 			if(pag_cod != null) 
 			return model.selecionarPagina(pag_cod);
@@ -187,12 +185,8 @@ public class PaginaBean extends UtilBean implements CrudBeans<Object> {
 		}
 	}
 	
-	public List<Pagina> getPaginasMenuTopo() {
-		return model.listaPaginasMenu("T");
-	}
-	
-	public List<Pagina> getPaginasMenuLateral() {
-		return model.listaPaginasMenu("L");
+	public List<Pagina> getPaginasMenu() {
+		return model.listarPaginas();
 	}
 
 }

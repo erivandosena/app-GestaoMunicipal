@@ -2,9 +2,34 @@
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
                xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.3 http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.3.xsd">
 
-      <url-mapping id="seo1"> 
+      <url-mapping> 
           <pattern value="/" /> 
           <view-id value="/home.jsf" />
       </url-mapping> 
+      
+      <url-mapping> 
+          <pattern value="/login/" /> 
+          <view-id value="/login.jsf" />
+      </url-mapping> 
+
+      <url-mapping> 
+          <pattern value="/admin/" /> 
+          <view-id value="/admin/index.jsf" />
+      </url-mapping> 
+      
+      <url-mapping> 
+          <pattern value="/logout/" /> 
+          <view-id value="/j_spring_security_logout" />
+      </url-mapping>
+      
+      <url-mapping> 
+          <pattern value="/fale-conosco/" />
+          <view-id value="/contato.jsf" />
+      </url-mapping> 
+      
+      <url-mapping>
+		  <pattern value="/conteudo/#{cod : paginaBean.pag_cod}/#{tit}/" />
+	      <view-id value="/conteudos.jsf" />
+      </url-mapping>
       
 </pretty-config>

@@ -63,9 +63,7 @@
   		
   		 <h:panelGroup rendered="#{!empty arquivoBean.arquivo.arq_nome}">
   		  <h:outputLabel value="Arquivo carregado"/>
-  		  <ul>
-		  <li><a href="#{facesContext.externalContext.request.contextPath}/uploads/arquivos/#{arquivoBean.arquivo.arq_local}#" target="_blank">#{arquivoBean.arquivo.arq_nome}</a></li>
-		  </ul>
+		  <a href="#{facesContext.externalContext.request.contextPath}/uploads/arquivos/#{arquivoBean.arquivo.arq_local}#" target="_blank">#{arquivoBean.arquivo.arq_nome}</a>
         </h:panelGroup>
 			
 		</h:panelGrid> 
