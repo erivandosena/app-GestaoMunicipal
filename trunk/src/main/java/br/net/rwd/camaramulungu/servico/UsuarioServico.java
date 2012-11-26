@@ -11,7 +11,7 @@ import br.net.rwd.camaramulungu.dao.UsuarioDAO;
 import br.net.rwd.camaramulungu.entidade.Usuario;
 
 @Service("usuarioServico")
-public class UsuarioServico extends DAOGenerico<Serializable> {// extends HibernateDaoSupport implements UserDetailsService {
+public class UsuarioServico extends DAOGenerico<Serializable> {
 
 	@Autowired
 	private UsuarioDAO dao;
@@ -25,6 +25,14 @@ public class UsuarioServico extends DAOGenerico<Serializable> {// extends Hibern
 	}
 	
 	public void alterarUsuario(Usuario usuario) {
+		//referente edicao do usuario
+		if(usuario.getUsu_perfil() == null || "".equals(usuario.getUsu_perfil())) {
+			Usuario usuarioPerfil = this.selecionarUsuario(usuario.getUsu_cod());
+			usuario.setUsu_perfil(usuarioPerfil.getUsu_perfil());
+			//remove objeto do contexto de persistencia
+			this.dao.separar(usuarioPerfil);
+		}
+		//
 		dao.atualizar(usuario);
 	}
 	
@@ -64,4 +72,10 @@ public class UsuarioServico extends DAOGenerico<Serializable> {// extends Hibern
 		return dao.obterLista(Usuario.class, "SELECT u FROM Usuario u WHERE u.usu_nome like ?1", nome);
 	}
 	
+	public boolean selecionarUsuarioExistente(String login) {
+		if(selecionarUsuarioLogin(login) != null)
+			return true;
+		else
+			return false;
+	}
 }

@@ -469,11 +469,10 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 		arquivo = new File(PATH + File.separator +nomeArquivo);
 		bytesImagem = Redimensiona.novaLargura(event.getFile().getContents(),600);
 		
+		mensagemUpload = "<p style='color:#3C82B4;font-weight:bold;background-color:#E2ECFB;height:auto;width:auto;padding:5px;'>O arquivo " + event.getFile().getFileName() + " foi carregado.\nUse o botão salvar para completar a operação!</p>";
+		
 		if (new File(arquivo.getPath()+ File.separator + nomeArquivo).exists())
 			addAvisoMensagem("Já existe uma imagem com mesmo nome, se continuar, a imagem atual será substituída.");
-
-		mensagemUpload = "<p style='color:#C09853;font-weight:bold;background-color:#FCF8E3;height:15px;width:auto;padding:5px;'>O arquivo " + event.getFile().getFileName() + " foi carregado.\nUse o botão salvar para completar a operação!</p>";
-		//addAvisoMensagem("O arquivo " + event.getFile().getFileName() + " foi carregado. \nUse o botão salvar para completar a operação!");
 	}
 	
 	private void salvarImagem() {
@@ -563,5 +562,4 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 	}
 	
 	/* ----------------------UPLOAD--------------------- */
-
 }

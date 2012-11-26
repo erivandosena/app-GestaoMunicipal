@@ -12,11 +12,10 @@ import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
 public class DAOGenerico<T extends Serializable> {
+	private Logger log4j = Logger.getLogger(Class.class.getName());
 
 	@PersistenceContext
 	protected EntityManager entityManager;
-
-	private Logger log4j = Logger.getLogger(Class.class.getName());
 
 	protected void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
@@ -58,6 +57,15 @@ public class DAOGenerico<T extends Serializable> {
 		}
 		return (List<T>) consulta.getResultList();
 	}
+	
+	@SuppressWarnings({ "unchecked", "hiding" })
+	@Transactional(readOnly = true)
+	public <T> List<T> obterListaLimitOffset(Class<T> classe, String jpql, int limit, int offset) {
+		Query consulta = entityManager.createQuery(jpql);
+		consulta.setFirstResult(limit);
+		consulta.setMaxResults(offset);
+		return (List<T>) consulta.getResultList();
+	}
 
 	@SuppressWarnings({ "hiding", "unchecked" })
 	@Transactional
@@ -72,7 +80,7 @@ public class DAOGenerico<T extends Serializable> {
 				entidade = (T) consulta.getSingleResult();
 			}
 		} catch (NoResultException nre) {
-			log4j.error(nre);
+			log4j.warn(nre + "\n Excecao tratada para evitar um NPE ao retornar null fazendo um cast.\nQuando a consulta retorna vazio.");
 		}
 		return entidade;
 	}
@@ -82,6 +90,11 @@ public class DAOGenerico<T extends Serializable> {
 	public <T> T obterEntidade(Class<T> classe, Integer chave) {
 		T entidade = entityManager.find(classe, chave);
 		return entidade;
+	}
+
+	@Transactional
+	public void separar(Object obj) {
+		entityManager.detach(obj);
 	}
 
 }

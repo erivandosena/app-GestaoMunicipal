@@ -24,7 +24,8 @@
     	<h1>
       		<a href="index.jsf">Administrativo</a>
     	</h1>
-    	<p>Visualizar <a href="#{facesContext.externalContext.requestContextPath}/home.jsf">Website</a></p>
+    	<p>Visualizar <a href="#{facesContext.externalContext.requestContextPath}/home.jsf" title="Clique aqui!">Website</a></p>
+        <p id="saldacao">#{siteBean.saldacao} <br /><strong>#{loginBean.usuarioLogado}</strong></p>
       </div>
     </div>
     <div id="page">
@@ -96,23 +97,9 @@
     <ul>
       <li>
         <h2>Opções Úteis</h2>
-        <p>Aqui você poderá acessar as estatísticas de visitação do
-          website, configurar contas de e-mail e acessar outras informações
-          sobre o plano de hospedagem.</p>
-      </li>
-      <li>
-        <h2>Relatórios de acesso</h2>
         <ul>
           <li>
-            <a href="http://stats.porta80.com.br" target="_brank">Estatísticas</a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <h2>Workspace Office</h2>
-        <ul>
-          <li>
-            <a href="http://www.workspace.com.br/camaramulungu/" target="_brank">Workspace</a>
+            <a href="http://www.workspace.com.br/camaramulungu/" target="_brank" title="Usuário:camara Senha:33281120">Workspace Office</a>
           </li>
         </ul>
       </li>

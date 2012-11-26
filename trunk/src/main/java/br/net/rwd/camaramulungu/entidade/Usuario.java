@@ -6,13 +6,9 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -39,17 +35,14 @@ public class Usuario implements Serializable, UserDetails {
 	private String usu_cep;
 	private String usu_estado;
 	private boolean usu_situacao = true;
-
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "usuariosperfis", joinColumns = @JoinColumn(name = "usu_cod"), inverseJoinColumns = @JoinColumn(name = "per_cod"))
-	private List<Perfil> perfis = new ArrayList<Perfil>();
+	private String usu_perfil;
 
 	@Transient
 	public Collection<GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> lista = new ArrayList<GrantedAuthority>();
-		for (Perfil perfil : getPerfis()) {
-			lista.add(new GrantedAuthorityImpl(perfil.getAuthority()));
-		}
+		//for (Perfil perfil : getPerfis()) {
+			lista.add(new GrantedAuthorityImpl(getUsu_perfil()));
+		//}
 		return lista;
 	}
 
@@ -163,12 +156,12 @@ public class Usuario implements Serializable, UserDetails {
 		this.usu_situacao = usu_situacao;
 	}
 
-	public List<Perfil> getPerfis() {
-		return perfis;
+	public String getUsu_perfil() {
+		return usu_perfil;
 	}
 
-	public void setPerfis(List<Perfil> perfis) {
-		this.perfis = perfis;
+	public void setUsu_perfil(String usu_perfil) {
+		this.usu_perfil = usu_perfil;
 	}
 
 	public Usuario() {

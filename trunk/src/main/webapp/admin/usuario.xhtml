@@ -10,9 +10,9 @@
   <ui:define name="gallery"></ui:define>
 
   <ui:define name="post">
-    <fieldset>
+    <fieldset style="width:auto;">
       <legend>Cadastro do usuário</legend>
-      <h:messages styleClass="msg_ok" showSummary="#{true}" infoClass="msg_ok" warnClass="msg_aviso" errorClass="msg_erro" globalOnly="true" />
+      <h:messages styleClass="msg_ok" infoClass="msg_ok" warnClass="msg_aviso" errorClass="msg_erro" />
       <h:form id="formDados" rendered="#{!usuarioBean.modoEdicao}" prependId="false">
 		<h:panelGrid columns="1">
 			<h:panelGroup>
@@ -22,7 +22,7 @@
 				</h:inputText>
 			</h:panelGroup>
 		</h:panelGrid>
-        <h:dataTable value="#{usuarioBean.usuarios}" var="usuario" id="listagem" border="0" width="620" >
+        <h:dataTable value="#{usuarioBean.usuarios}" var="usuario" id="listagem" border="0" style="width:595px;" styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine">
           <h:column>
             <f:facet name="header">Nome</f:facet>
             <h:outputText value="#{usuario.usu_nome}" />
@@ -32,42 +32,41 @@
             <h:outputText value="#{usuario.usu_email}" />
           </h:column>
           <h:column>
-            <f:facet name="header"></f:facet>
-            <h:commandLink value="Alterar" action="#{usuarioBean.atualizar}" >
+            <f:facet name="header"><h:graphicImage library="images" name="btn_edita.gif" alt="Edição" title="" /></f:facet>
+            <h:commandLink value="Alterar" action="#{usuarioBean.atualizar}" disabled="#{loginBean.loginUsuarioLogado ne usuario.usu_email and loginBean.usuarioEmSessao != 'ROLE_ADMINISTRADOR'}">
               <f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}" />
             </h:commandLink>
           </h:column>
           <h:column>
-            <f:facet name="header"></f:facet>
-            <h:commandLink id="lnkDelete" value="Excluir" onclick="if (!confirm('Tem certeza que deseja excluir este registro?')) return false" action="#{usuarioBean.excluir}">
+            <f:facet name="header"><h:graphicImage library="images" name="btn_remove.gif" alt="Exclusão" title="" /></f:facet>
+            <h:commandLink id="lnkDelete" value="Excluir" onclick="if (!confirm('Tem certeza que deseja excluir este registro?')) return false" action="#{usuarioBean.excluir}" disabled="#{loginBean.loginUsuarioLogado ne usuario.usu_email and loginBean.usuarioEmSessao != 'ROLE_ADMINISTRADOR'}">
               <f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}" />
             </h:commandLink>
           </h:column>
         </h:dataTable>
-        <h:commandButton value="Cadastrar" actionListener="#{usuarioBean.incluir}" />
+        <h:commandButton value="Cadastrar" actionListener="#{usuarioBean.incluir}" disabled="#{loginBean.usuarioEmSessao != 'ROLE_ADMINISTRADOR'}"/>
         <h:commandButton value="Atualizar" action="#{usuarioBean.retornar}" immediate="true" />
       </h:form>
       <h:form id="formEdicao" rendered="#{usuarioBean.modoEdicao}" prependId="false">
         <h:panelGrid columns="1" border="0" >
-			<h:outputLabel for="codigo" value="Código" rendered="#{!empty usuarioBean.usuario.usu_cod}" styleClass=""/>
-			<h:inputText id="codigo" value="#{usuarioBean.usuario.usu_cod}" rendered="#{!empty usuarioBean.usuario.usu_cod}" readonly="#{!empty usuarioBean.usuario.usu_cod}" styleClass=""/>
-			
 			<h:outputLabel for="nome" value="Nome" styleClass=""/>
-			<h:inputText id="nome" value="#{usuarioBean.usuario.usu_nome}" size="60" maxlength="50" required="true" requiredMessage="Campo obrigatório." styleClass="" />
-			<h:message for="nome" styleClass="msg_erro" />
+			<h:inputText id="nome" value="#{usuarioBean.usuario.usu_nome}" size="50" maxlength="50" required="true" requiredMessage="Nome obrigatório." styleClass="" />
 			
-			<h:outputLabel for="email" value="E-mail" styleClass=""/>
-			<h:inputText id="email" value="#{usuarioBean.usuario.usu_email}" size="25" maxlength="100" required="true" validator="#{uteis.validaEmail}" requiredMessage="Campo obrigatório." styleClass=""/>
-			<h:message for="email" styleClass="msg_erro" />
+			<h:outputLabel for="email" value="E-mail" />
+			<h:inputText id="email" value="#{usuarioBean.usuario.usu_email}" size="50" maxlength="100" required="true" requiredMessage="E-mail obrigatório." validatorMessage="E-mail inválido.">
+			<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /> 
+			</h:inputText>
 			
-			<h:outputLabel for="senha" value="Senha" styleClass=""/>
-			<h:inputSecret id="senha" value="#{usuarioBean.usuario.usu_senha}" size="15" maxlength="25" required="true" requiredMessage="Campo obrigatório." styleClass=""/>
-			<h:message for="senha" styleClass="msg_erro" />
+			<h:outputLabel for="senha" value="Senha" />
+			<h:inputSecret id="senha" value="#{usuarioBean.usuario.usu_senha}" size="25" maxlength="25" />
+			
+			<h:outputLabel for="confirma" value="Confirma senha" />
+			<h:inputSecret id="confirma" value="#{usuarioBean.confirmaSenha}" size="25" maxlength="25" />
 			
 			<h:outputLabel for="perfil" value="Perfil" styleClass=""/>
-			<h:selectOneMenu id="perfil" value="#{perfilBean.perfil.per_cod}" disabled="#{loginBean.usuarioEmSessao == 'ROLE_USER'}" required="false" requiredMessage="Campo obrigatório." styleClass="">
+			<h:selectOneMenu id="perfil" value="#{usuarioBean.usuario.usu_perfil}" disabled="#{loginBean.usuarioEmSessao == 'ROLE_USUARIO'}" required="true" requiredMessage="Perfil obrigatório." styleClass="">
 				<f:selectItem itemValue="" itemLabel="Selecione" /> 
-				<f:selectItems value="#{perfilBean.perfis}"/>
+				<f:selectItems value="#{usuarioBean.perfis}"/>
 			</h:selectOneMenu>
 			
 		</h:panelGrid> 

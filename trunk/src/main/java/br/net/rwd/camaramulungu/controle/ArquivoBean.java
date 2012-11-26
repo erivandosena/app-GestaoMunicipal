@@ -181,11 +181,10 @@ public class ArquivoBean extends UtilBean implements CrudBeans<Object> {
 		arquivoUp = new File(PATH + File.separator +nomeArquivo);
 		bytesArquivo = event.getFile().getContents();
 		
+		mensagemUpload = "<p style='color:#3C82B4;font-weight:bold;background-color:#E2ECFB;height:auto;width:auto;padding:5px;'>O arquivo " + event.getFile().getFileName() + " foi carregado.\nUse o botão salvar para completar a operação!</p>";
+
 		if (new File(arquivoUp.getPath()+ File.separator + nomeArquivo).exists())
 			addAvisoMensagem("Já existe um arquivo com mesmo nome, se continuar, o arquivo atual será substituído.");
-
-		mensagemUpload = "<p style='color:#C09853;font-weight:bold;background-color:#FCF8E3;height:15px;width:auto;padding:5px;'>O arquivo " + event.getFile().getFileName() + " foi carregado.\nUse o botão salvar para completar a operação!</p>";
-		//addAvisoMensagem("O arquivoUp " + event.getFile().getFileName() + " foi carregado. \nUse o botão salvar para completar a operação!");
 	}
 	
 	private void salvarArquivo() {
