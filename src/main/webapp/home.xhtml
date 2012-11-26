@@ -7,5 +7,36 @@
     xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:sec="http://www.springframework.org/security/facelets/tags"
 	xmlns="http://www.w3.org/1999/xhtml">
+	
+	<ui:define name="head">
+	<!-- jQuery -->
+	<h:outputScript library="javascript" name="jquery/jquery-1.7.2.min.js" target="head"/>
+	
+	<!-- FlexSlider -->
+	<h:outputScript library="javascript" name="jquery/plugins/flexslider/js/jquery.flexslider.js" target="head" />
+
+	<!-- Syntax Highlighter -->
+	<h:outputStylesheet library="javascript" name="jquery/plugins/flexslider/css/flexslider.css" target="body" />
+
+	<!-- Syntax Lightbox -->
+	<h:outputScript library="javascript" name="jquery/plugins/lightbox/js/jquery.lightbox-0.5.js" target="head" />
+	<h:outputStylesheet library="javascript" name="jquery/plugins/lightbox/css/jquery.lightbox-0.5.css" target="body" />
+
+	<script language="javascript" type="text/javascript">
+	//<![CDATA[
+    $(window).load(function(){
+      //flexslider
+      $('.flexslider').flexslider({
+        animation: "slide",
+        animationLoop: true,
+        itemWidth: 145,
+        itemMargin: 5
+      });
+      //lightBox
+      jQuery("#bgthumb a").lightBox(); 
+    });
+	//]]>
+	</script>
+	</ui:define>
 
 </ui:composition>

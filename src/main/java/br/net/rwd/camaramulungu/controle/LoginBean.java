@@ -15,6 +15,7 @@ import javax.servlet.ServletResponse;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import br.net.rwd.camaramulungu.entidade.Usuario;
 import br.net.rwd.camaramulungu.servico.UsuarioServico;
 import br.net.rwd.camaramulungu.util.Criptografia;
 
@@ -24,10 +25,6 @@ public class LoginBean {
 	
 	@ManagedProperty("#{usuarioServico}")
 	private UsuarioServico model;
-
-	//@ManagedProperty(value = "#{authenticationService}")
-	//private UsuarioAuthenticationService authenticationService;
-
 	private String usuario;
 	private String senha;
 
@@ -70,6 +67,20 @@ public class LoginBean {
 			username = model.selecionarUsuarioLogin(((UserDetails)usuarioLogado).getUsername()).getUsu_nome().toString();
 		} else {
 			username = usuarioLogado.toString().replace("anonymousUser","Visitante");
+		}
+		return username;
+	}
+	
+	public String getLoginUsuarioLogado() {
+		String username = null;
+		Object usuarioLogado = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (usuarioLogado instanceof UserDetails) {
+			Usuario usuario = model.selecionarUsuarioLogin(((UserDetails)usuarioLogado).getUsername());
+			if (usuario != null)
+				username = usuario.getUsu_email();
+				//username = model.selecionarUsuarioLogin(((UserDetails)usuarioLogado).getUsername()).getUsu_email().toString();
+		} else {
+			username = usuarioLogado.toString();
 		}
 		return username;
 	}

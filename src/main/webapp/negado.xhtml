@@ -8,37 +8,34 @@
 	  xmlns:p="http://primefaces.org/ui">
 	  
    <h:head>
-   
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   <meta name="robots" content="noindex, nofollow" />
    <title><h:outputText value="#{siteBean.carregarDados.web_titulo} - " rendered="#{!empty siteBean.carregarDados.web_titulo}" />Acesso negado</title>
+   <meta name="robots" content="noindex, nofollow" />
    <link rel="shortcut icon" type="image/x-icon" href="#{facesContext.externalContext.request.contextPath}/favicon.ico" />
-   <link rel="icon" type="image/gif" href="#{facesContext.externalContext.request.contextPath}/animated_favicon1.gif" />
+   <link rel="icon" type="image/gif" href="#{facesContext.externalContext.request.contextPath}/resources/images/animated_favicon.gif" />
    <h:outputStylesheet library="css" name="style.css" target="body" />
-   
    </h:head> 
+   
    <h:body>     
-  		
 	<p:dialog style="color:#fff;font-weight:bold;font-size:10pt;"
 		header="Ops! Acesso não autorizado!" 
 		modal="true" 
-		closable="true"
+		closable="false"
 	    position="center" 
 	    widgetVar="modalNegado" 
 	    minWidth="600" 
 	    width="650"
 		showEffect="shake" 
 		draggable="true" 
-		resizable="true" 
+		resizable="false" 
 		visible="true">
 		
 		<center>
-			<h:graphicImage library="images" name="logo_camara_mulungu.jpg" alt=""  width="600" height="340" styleClass=""/>
+			<h:graphicImage library="images" name="negado.png" alt="Negado" title="Acesso não autorizado"  />
 			<br /><br /><br /> 
-			<a href="#{facesContext.externalContext.requestContextPath}/login.jsf">Voltar</a>
+			<a href="#{facesContext.externalContext.requestContextPath}/login/">Voltar</a>
 	   </center>
 
 	</p:dialog>
-
 	</h:body>
 </html>

@@ -22,15 +22,10 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"> 
   		<property name="driverClass" value="org.postgresql.Driver" /> 
 
-  		<!-- Bd em producao 
+  		<!-- Bd em producao -->
   		<property name="jdbcUrl" value="jdbc:postgresql://pgsql4.porta80.com.br:5432/camaramulungu" /> 
   		<property name="user" value="camaramulungu" /> 
   		<property name="password" value="33281120" />
-  		-->
-  		
-  		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/camaramulungu" /> 
-  		<property name="user" value="postgres" /> 
-  		<property name="password" value="postgres" />
 		
   		<!-- Pool properties --> 
   		<property name="initialPoolSize" value="2" />

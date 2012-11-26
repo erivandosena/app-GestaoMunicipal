@@ -44,6 +44,7 @@ public class FotoBean extends UtilBean implements CrudBeans<Object> {
 	String nomeImagem = null;
 	String nomeArquivo = null;
 	File arquivo = null;
+	private String mensagemUpload = null;
 	
 	/* ------------------------------------------------- */
 
@@ -109,6 +110,14 @@ public class FotoBean extends UtilBean implements CrudBeans<Object> {
 
 	public void setBytesFoto(byte[] bytesFoto) {
 		this.bytesFoto = bytesFoto;
+	}
+
+	public String getMensagemUpload() {
+		return mensagemUpload;
+	}
+
+	public void setMensagemUpload(String mensagemUpload) {
+		this.mensagemUpload = mensagemUpload;
 	}
 
 	/* ------------------------------------------------- */
@@ -201,7 +210,7 @@ public class FotoBean extends UtilBean implements CrudBeans<Object> {
 		arquivo = new File(PATH + File.separator + nomeImagem);
 		bytesFoto = Redimensiona.novaLargura(event.getFile().getContents(),640);
 		
-		addAvisoMensagem("O arquivo " + nomeArquivo + " foi carregado. \nUse o botão salvar para completar a operação!");
+		mensagemUpload = "<p style='color:#3C82B4;font-weight:bold;background-color:#E2ECFB;height:auto;width:auto;padding:5px;'>A foto " + event.getFile().getFileName() + " foi carregada.\nUse o botão salvar para completar a operação!</p>";
 		
 		if (arquivo.exists())
 			addAvisoMensagem("Já existe uma foto com mesmo nome, se continuar, a foto atual será substituída.");

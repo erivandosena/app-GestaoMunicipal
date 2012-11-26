@@ -14,49 +14,8 @@
 <meta name="keywords" content="camara,municipal,mulungu,legislativo,relatorios,prestacao,contas,vereadores,presidente" />
 <link rel="shortcut icon" type="image/x-icon" href="#{facesContext.externalContext.request.contextPath}/favicon.ico" />
 <link rel="icon" type="image/gif" href="#{facesContext.externalContext.request.contextPath}/resources/images/animated_favicon.gif" />
-
 <h:outputStylesheet library="css" name="style.css" target="body" />
-<h:outputScript library="javascript" name="jquery/jquery-1.4.2.min.js" target="head"/>
-<h:outputScript library="javascript" name="jquery/plugins/gallerax/jquery.gallerax-0.2.js" target="head" />
-
-<h:outputScript library="javascript" name="jquery/plugins/jcarousel/lib/jquery.jcarousel.js" target="head" />
-<h:outputScript library="javascript" name="jquery/plugins/jcarousel/lib/jquery.jcarousel.pack.js" target="head" />
-<h:outputScript library="javascript" name="jquery/plugins/lightbox/js/jquery.lightbox-0.5.js" target="head" />
-
-<h:outputStylesheet library="javascript" name="jquery/plugins/jcarousel/lib/jquery.jcarousel.css" target="body" />
-<h:outputStylesheet library="javascript" name="jquery/plugins/jcarousel/skins/tango/skin.css" target="body" />
-<h:outputStylesheet library="javascript" name="jquery/plugins/lightbox/css/jquery.lightbox-0.5.css" target="body" />
-
-<script type="text/javascript">
-	function mycarousel_initCallback(carousel)
-	{
-		// Desabilita o autoscrolling se o usuário clicar no botão anterior ou próximo.
-		carousel.buttonNext.bind('click', function() {
-		carousel.startAuto(0);
-    });
-
-    carousel.buttonPrev.bind('click', function() {
-        carousel.startAuto(0);
-    });
-
-    //Pausa o autoscrolling se o usuário mover o cursor sobre a imagem clip.
-    carousel.clip.hover(function() {
-        carousel.stopAuto();
-    }, function() {
-        carousel.startAuto();
-    });
-	};
-
-	jQuery(document).ready(function() {
-    jQuery('#gallery-bgthumb').jcarousel({
-        auto: 2,
-        wrap: 'last',
-        initCallback: mycarousel_initCallback
-    });
-    jQuery("#bgthumb a").lightBox(); 
-	});
- </script>
-
+<ui:insert name="head"></ui:insert>
 </h:head>
 <h:body>
   <!-- form -->

@@ -12,11 +12,11 @@
 
     <ui:define name="post">
 	
-	<fieldset style="width: 595px;"><legend>Cadastro de Fotos</legend>
+	<fieldset style="width:auto;"><legend>Cadastro de Fotos</legend>
 
+	<h:messages styleClass="msg_ok" infoClass="msg_ok" warnClass="msg_aviso" errorClass="msg_erro" />
       <h:form id="formDados" rendered="#{!fotoBean.modoEdicao}" prependId="false">
-      <p:messages id="mensagens" showSummary="#{true}" autoUpdate="#{true}" /> 
-        <h:dataTable value="#{fotoBean.fotos}" var="foto" id="listagem" border="0" style="width: 595px;">
+        <h:dataTable value="#{fotoBean.fotos}" var="foto" id="listagem" border="0" style="width:595px;" styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine">
           <h:column>
             <f:facet name="header">Foto</f:facet>
             <a href="#" title="#{foto.fot_descricao}">
@@ -24,13 +24,13 @@
             </a>
           </h:column>
           <h:column>
-            <f:facet name="header"></f:facet>
+            <f:facet name="header"><h:graphicImage library="images" name="btn_edita.gif" alt="Edição" title="" /></f:facet>
             <h:commandLink value="Alterar" action="#{fotoBean.atualizar}" >
               <f:setPropertyActionListener target="#{fotoBean.foto}" value="#{foto}" />
             </h:commandLink>
           </h:column>
           <h:column>
-            <f:facet name="header"></f:facet>
+            <f:facet name="header"><h:graphicImage library="images" name="btn_remove.gif" alt="Exclusão" title="" /></f:facet>
             <h:commandLink id="lnkDelete" value="Excluir" action="#{fotoBean.excluir}" onclick="if (!confirm('Tem certeza que deseja excluir este registro?')) return false" >
               <f:setPropertyActionListener target="#{fotoBean.foto}" value="#{foto}" />
             </h:commandLink>
@@ -43,11 +43,11 @@
       <h:form id="formEdicao" rendered="#{fotoBean.modoEdicao}" prependId="false">
 	  <h:panelGrid columns="1" border="0">
       
-      <h:outputLabel for="descricao" value="Descrição resumida da foto" />
-	  <p:inputTextarea id="descricao" rows="3" cols="79" maxlength="255" value="#{fotoBean.foto.fot_descricao}" />
+      <h:outputLabel for="descricao" value="Legenda da foto" />
+	  <p:inputTextarea id="descricao" rows="3" cols="80" maxlength="255" value="#{fotoBean.foto.fot_descricao}" style="width:575px;" />
 	  
 	  <h:outputLabel for="upload" value="Upload da foto"/>
-      <p:fileUpload id="upload" 
+      <p:fileUpload id="upload"  
                     fileUploadListener="#{fotoBean.handleFileUpload}" 
       				sizeLimit="52428800" 
       				auto="true" 
@@ -55,16 +55,19 @@
      	 			allowTypes="/(\.|\/)(jpe?g|JPE?G)$/" 
      	 			multiple="false" 
       				description="Imagem JPG" 
-      				update="btSalvar,imagem" 
-      				/>
-	  </h:panelGrid>
+      				update="btSalvar,msg,foto" 
+      />
 
-	  <h:panelGroup rendered="#{!empty arquivoBean.arquivo.arq_nome}">
-	  <h:outputLabel for="imagem" value="Foto carregada" />
-	  <div style="width: 595px; height: auto; overflow: hidden;">
-	  <h:graphicImage id="imagem" value="#{facesContext.externalContext.request.contextPath}/uploads/fotos/#{arquivoBean.arquivo.arq_local}" cache="false" style="border:none;"/>
+	  <h:outputText id="msg" value="#{fotoBean.mensagemUpload}" escape="false"/>	
+
+	  <h:panelGroup rendered="#{!empty fotoBean.foto.fot_foto}">
+	  <h:outputLabel for="foto" value="Foto carregada" style="padding-left:5px;" /><br />
+	  <div style="width:575px;height:auto;overflow:hidden;padding-left:5px;padding-top:10px;">
+	  <h:graphicImage id="foto" value="/uploads/fotos/#{fotoBean.foto.fot_foto}" cache="false" style="border:none;width:585px;padding-bottom:10px;"/>
 	  </div>
 	  </h:panelGroup>
+	  
+	  </h:panelGrid>
 
       <h:commandButton id="btSalvar" value="Salvar" actionListener="#{fotoBean.salvar}" disabled="#{fotoBean.bytesFoto eq null}"/>
       <h:commandButton value="Cancelar" action="#{fotoBean.retornar}" immediate="true" />

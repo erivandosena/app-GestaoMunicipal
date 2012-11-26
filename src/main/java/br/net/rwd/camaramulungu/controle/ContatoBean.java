@@ -36,8 +36,6 @@ public class ContatoBean extends UtilBean {
 	private String email;
 	private String assunto;
 	private static String mensagem;
-	
-	private static final String IMAGEM = "/resources/images/logo_camara_mulungu_107x80.jpg";
 
 	@Autowired
 	private JavaMailSender enviarEmail;
@@ -124,12 +122,6 @@ public class ContatoBean extends UtilBean {
             "<body lang=PT-BR link=blue vlink=purple>"+
             "<div align=center>"+
               "<table border='0' cellspacing='0' cellpadding='5' width='550'>"+
-                "<tr bgcolor='#F0EEF1'>"+
-                  "<td width='175'><p><span style='font-family: Arial'><a href='"+request.getRequestURL().toString().replace(request.getRequestURI(),request.getContextPath())+"'>" +
-                  "<span style='text-decoration: none; text-underline: none'><img border='0' height='80' src='"+request.getRequestURL().toString().replace(request.getRequestURI(),request.getContextPath())+ IMAGEM +"'/>" +
-                  "</span></a></span></p></td>"+
-                  "<td width='372'></td>"+
-                "</tr>"+
                 "<tr>"+
                   "<td></td>"+
                   "<td></td>"+

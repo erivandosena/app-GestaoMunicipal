@@ -541,7 +541,7 @@ a:hover {
 
 #gallery-bgthumb {
 	width: 620px;
-	height: 120px;
+	height: auto;
 	background-color: #E6ECFA;
 }
 
@@ -779,7 +779,7 @@ table{
 table thead th{
 	color:#FFFFFF;
 	background-color:#666666;
-	border:1px solid #CCCCCC;
+	border:0px solid #CCCCCC;
 	border-collapse:collapse;
 	text-align:center;
 	table-layout:auto;
@@ -807,6 +807,26 @@ table tbody tr.dark{
 	color:#666666;
 	background-color:#E8E8E8;
 	}
+
+/* tabela zebrada */
+.tableColumnsHeader {
+    text-align: left;
+    background: none repeat scroll 0 0 #666666;
+    border-bottom: 1px solid #BBBBBB;
+    padding: 5px;
+}
+ 
+.tableFirstLine {
+    text-align: left;
+    background: none repeat scroll 0 0 #F9F9F9;
+    border-top: 1px solid #BBBBBB;
+}
+ 
+.tableNextLine {
+    text-align: left;
+    background: none repeat scroll 0 0 #FFFFFFF;
+    border-top: 1px solid #BBBBBB;
+}
 	
 /* mensagens */
 
