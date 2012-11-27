@@ -266,8 +266,6 @@
 				<version>2.2</version>
 				<configuration>
 					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
-					<packagingExcludes>uploads/arquivos/</packagingExcludes>
-					<packagingExcludes>uploads/fotos/</packagingExcludes>
 				</configuration>
 			</plugin>
 		</plugins>

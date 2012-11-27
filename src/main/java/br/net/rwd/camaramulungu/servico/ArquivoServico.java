@@ -45,7 +45,7 @@ public class ArquivoServico extends DAOGenerico<Serializable> {
 	}
 	
 	public List<Arquivo> listarArquivos() {
-		return dao.obterLista(Arquivo.class, "SELECT a FROM Arquivo a ORDER BY a.arq_cod ASC");
+		return dao.obterLista(Arquivo.class, "SELECT a FROM Arquivo a ORDER BY a.arq_cod DESC");
 	}
 	
 	public List<Arquivo> listarArquivo(int codigo) {
