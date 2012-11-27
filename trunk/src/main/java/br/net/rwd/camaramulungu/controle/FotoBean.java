@@ -127,6 +127,7 @@ public class FotoBean extends UtilBean implements CrudBeans<Object> {
 		this.foto = new Foto();
 		this.modoEdicao = true;
 		bytesFoto = null;
+		mensagemUpload = null;
 	}
 
 	@Override
@@ -168,6 +169,7 @@ public class FotoBean extends UtilBean implements CrudBeans<Object> {
 	public void atualizar() {
 		atualizarFoto();
 		this.modoEdicao = true;
+		mensagemUpload = null;
 	}
 
 	@Override
@@ -205,6 +207,7 @@ public class FotoBean extends UtilBean implements CrudBeans<Object> {
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
+		System.out.println("entrou no FileUploadEvent");
 		nomeArquivo = event.getFile().getFileName();
 		nomeImagem = Criptografia.criptografarMD5(nomeArquivo).concat(".jpg");
 		arquivo = new File(PATH + File.separator + nomeImagem);

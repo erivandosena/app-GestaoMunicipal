@@ -63,8 +63,6 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 	private String web_localizacao;
 	private String web_messenger;
 	private String web_skype;
-	private byte[] web_img_padrao;
-	private String web_img_mime;
 	private String web_img_nome;
 
 	/* ------------------------------------------------- */
@@ -324,22 +322,6 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 		this.web_skype = web_skype;
 	}
 
-	public byte[] getWeb_img_padrao() {
-		return web_img_padrao;
-	}
-
-	public void setWeb_img_padrao(byte[] web_img_padrao) {
-		this.web_img_padrao = web_img_padrao;
-	}
-
-	public String getWeb_img_mime() {
-		return web_img_mime;
-	}
-
-	public void setWeb_img_mime(String web_img_mime) {
-		this.web_img_mime = web_img_mime;
-	}
-
 	public String getWeb_img_nome() {
 		return web_img_nome;
 	}
@@ -370,6 +352,7 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 	public void incluir() {
         this.site = new Site();
         this.modoEdicao = true;
+        mensagemUpload = null;
 	}
 
 	@Override
@@ -394,6 +377,7 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 	public void atualizar() {
 		atualizarImagem();
 		this.modoEdicao = true;
+		mensagemUpload = null;
 	}
 
 	@Override
@@ -466,12 +450,12 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 
 	public void handleFileUpload(FileUploadEvent event) {
 		nomeArquivo = "logo.".concat( event.getFile().getFileName() .substring( event.getFile().getFileName() .lastIndexOf('.') + 1));
-		arquivo = new File(PATH + File.separator +nomeArquivo);
+		arquivo = new File(PATH + File.separator + nomeArquivo);
 		bytesImagem = Redimensiona.novaLargura(event.getFile().getContents(),600);
-		
+
 		mensagemUpload = "<p style='color:#3C82B4;font-weight:bold;background-color:#E2ECFB;height:auto;width:auto;padding:5px;'>O arquivo " + event.getFile().getFileName() + " foi carregado.\nUse o botão salvar para completar a operação!</p>";
-		
-		if (new File(arquivo.getPath()+ File.separator + nomeArquivo).exists())
+
+		if (arquivo.exists())
 			addAvisoMensagem("Já existe uma imagem com mesmo nome, se continuar, a imagem atual será substituída.");
 	}
 	

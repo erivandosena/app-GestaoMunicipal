@@ -126,6 +126,7 @@ public class ArquivoBean extends UtilBean implements CrudBeans<Object> {
 	public void incluir() {
         this.arquivo = new Arquivo();
         this.modoEdicao = true;
+        mensagemUpload = null;
 	}
 
 	@Override
@@ -150,6 +151,7 @@ public class ArquivoBean extends UtilBean implements CrudBeans<Object> {
 	public void atualizar() {
 		atualizarArquivo();
 		this.modoEdicao = true;
+		mensagemUpload = null;
 	}
 
 	@Override

@@ -48,8 +48,6 @@ public class Site implements Serializable {
 	private String web_localizacao;
 	private String web_messenger;
 	private String web_skype;
-	private byte[] web_img_padrao;
-	private String web_img_mime;
 	private String web_img_nome;
 
 	public Integer getWeb_cod() {
@@ -258,22 +256,6 @@ public class Site implements Serializable {
 
 	public void setWeb_skype(String web_skype) {
 		this.web_skype = web_skype;
-	}
-
-	public byte[] getWeb_img_padrao() {
-		return web_img_padrao;
-	}
-
-	public void setWeb_img_padrao(byte[] web_img_padrao) {
-		this.web_img_padrao = web_img_padrao;
-	}
-
-	public String getWeb_img_mime() {
-		return web_img_mime;
-	}
-
-	public void setWeb_img_mime(String web_img_mime) {
-		this.web_img_mime = web_img_mime;
 	}
 
 	public String getWeb_img_nome() {

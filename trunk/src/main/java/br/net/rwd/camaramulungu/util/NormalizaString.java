@@ -3,8 +3,6 @@ package br.net.rwd.camaramulungu.util;
 public class NormalizaString {
 
 	public static String normalizar(String str) {
-		// str = Normalizer.normalize(str, Normalizer.Form.NFD);
-		// str = str.replaceAll("[^\\p{ASCII}]", "");
 
 		// Troca os caracteres acentuados por nao acentuados
 		String[][] caracteresAcento = { { "Á", "A" }, { "á", "a" },

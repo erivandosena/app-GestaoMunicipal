@@ -206,7 +206,8 @@
 	<!-- Arquivos procurados na inicialização -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsf</welcome-file>
 	</welcome-file-list>
 	
 	<!-- Tempo de vida das sessões -->
@@ -229,7 +230,7 @@
 	<param-value>true</param-value>
 	</context-param>  
 	  
-	<!-- Tratamentos de erros   
+	<!-- Tratamentos de erros -->   
 	<error-page>
 		<error-code>403</error-code>
 		<location>/403.jsf</location>
@@ -242,5 +243,5 @@
 		<error-code>500</error-code>
 		<location>/500.jsf</location>
 	</error-page>
-	-->
+	
 </web-app>
