@@ -133,7 +133,7 @@ public class FotoBean extends UtilBean implements CrudBeans<Object> {
 	@Override
 	public void salvar() {
 		if (bytesFoto == null)
-			addInfoMensagem("É preciso carregar uma foto antes de salvar!");
+			addInfoMensagem("ï¿½ preciso carregar uma foto antes de salvar!");
 		
 		if (foto.getFot_cod() == null || foto.getFot_cod().intValue() == 0) {
 			
@@ -144,7 +144,7 @@ public class FotoBean extends UtilBean implements CrudBeans<Object> {
 				addInfoMensagem("Foto incluida com sucesso.");
 				retornar();
 			} else {
-				addErroMensagem("Cadastro da foto não realizado!");
+				addErroMensagem("Cadastro da foto nï¿½o realizado!");
 			}
 
 		} else {
@@ -155,7 +155,7 @@ public class FotoBean extends UtilBean implements CrudBeans<Object> {
 				if (arquivoAnterior.exists())
 					arquivoAnterior.delete();
 				if (!salvaArquivo())
-					addErroMensagem("Alteração da imagem não realizada!");
+					addErroMensagem("Alteraï¿½ï¿½o da imagem nï¿½o realizada!");
 			}
 			model.alterarFoto(foto);
 			bytesFoto = null;
@@ -203,20 +203,20 @@ public class FotoBean extends UtilBean implements CrudBeans<Object> {
 		if(arquivo.exists()) 
 		bytesFoto = FileParaBytes.getFileBytes(arquivo);
 		else
-			addErroMensagem("O arquivo da foto selecionada não foi encontrado! Carregue uma nova foto.");
+			addErroMensagem("O arquivo da foto selecionada nï¿½o foi encontrado! Carregue uma nova foto.");
 	}
 
 	public void handleFileUpload(FileUploadEvent event) {
-		System.out.println("entrou no FileUploadEvent");
 		nomeArquivo = event.getFile().getFileName();
-		nomeImagem = Criptografia.criptografarMD5(nomeArquivo).concat(".jpg");
+		String extensao = nomeArquivo.substring(nomeArquivo.lastIndexOf('.')+1);
+		nomeImagem = Criptografia.criptografarMD5(nomeArquivo).concat(".").concat(extensao);
 		arquivo = new File(PATH + File.separator + nomeImagem);
-		bytesFoto = Redimensiona.novaLargura(event.getFile().getContents(),640);
+		bytesFoto = Redimensiona.novaLargura(event.getFile().getContents(),640,extensao);
 		
-		mensagemUpload = "<p style='color:#3C82B4;font-weight:bold;background-color:#E2ECFB;height:auto;width:auto;padding:5px;'>A foto " + event.getFile().getFileName() + " foi carregada.\nUse o botão salvar para completar a operação!</p>";
+		mensagemUpload = "<p style='color:#3C82B4;font-weight:bold;background-color:#E2ECFB;height:auto;width:auto;padding:5px;'>A foto " + event.getFile().getFileName() + " foi carregada.\nUse o botï¿½o salvar para completar a operaï¿½ï¿½o!</p>";
 		
 		if (arquivo.exists())
-			addAvisoMensagem("Já existe uma foto com mesmo nome, se continuar, a foto atual será substituída.");
+			addAvisoMensagem("Jï¿½ existe uma foto com mesmo nome, se continuar, a foto atual serï¿½ substituï¿½da.");
 	}
 
 	boolean salvaArquivo() {
@@ -255,7 +255,7 @@ public class FotoBean extends UtilBean implements CrudBeans<Object> {
 			retorno = true;
 		} catch (IOException e) {
 			e.printStackTrace();
-			addErroMensagem("O arquivo arquivo da foto não foi enviado, tente novamente!");
+			addErroMensagem("O arquivo arquivo da foto nï¿½o foi enviado, tente novamente!");
 			retorno = false;
 		}
 		return retorno;

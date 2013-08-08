@@ -449,14 +449,16 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 	/* ----------------------UPLOAD--------------------- */
 
 	public void handleFileUpload(FileUploadEvent event) {
-		nomeArquivo = "logo.".concat( event.getFile().getFileName() .substring( event.getFile().getFileName() .lastIndexOf('.') + 1));
+		String arqNome = event.getFile().getFileName();
+		String extensao = arqNome.substring(arqNome.lastIndexOf('.')+1);
+		nomeArquivo = "logo.".concat(extensao);
 		arquivo = new File(PATH + File.separator + nomeArquivo);
-		bytesImagem = Redimensiona.novaLargura(event.getFile().getContents(),600);
+		bytesImagem = Redimensiona.novaLargura(event.getFile().getContents(),600,extensao);
 
-		mensagemUpload = "<p style='color:#3C82B4;font-weight:bold;background-color:#E2ECFB;height:auto;width:auto;padding:5px;'>O arquivo " + event.getFile().getFileName() + " foi carregado.\nUse o botão salvar para completar a operação!</p>";
+		mensagemUpload = "<p style='color:#3C82B4;font-weight:bold;background-color:#E2ECFB;height:auto;width:auto;padding:5px;'>O arquivo " + event.getFile().getFileName() + " foi carregado.\nUse o botï¿½o salvar para completar a operaï¿½ï¿½o!</p>";
 
 		if (arquivo.exists())
-			addAvisoMensagem("Já existe uma imagem com mesmo nome, se continuar, a imagem atual será substituída.");
+			addAvisoMensagem("Jï¿½ existe uma imagem com mesmo nome, se continuar, a imagem atual serï¿½ substituï¿½da.");
 	}
 	
 	private void salvarImagem() {
@@ -464,9 +466,9 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 		if (site.getWeb_img_nome() == null) {
 			if (salvaArquivo()) {
 				bytesImagem = null;
-				addInfoMensagem("Imagem incluída com sucesso.");
+				addInfoMensagem("Imagem incluï¿½da com sucesso.");
 			} else {
-				addErroMensagem("Inclusão de imagem não realizada!");
+				addErroMensagem("Inclusï¿½o de imagem nï¿½o realizada!");
 			}
 		} else {
 
@@ -477,7 +479,7 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 					arquivoAnterior.delete();
 
 				if (!salvaArquivo()) 
-					addErroMensagem("Alteração da imagem não realizada!");
+					addErroMensagem("Alteraï¿½ï¿½o da imagem nï¿½o realizada!");
 			}
 			bytesImagem = null;
 		}
@@ -486,7 +488,7 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 	
 	private boolean salvaArquivo() {
 		boolean retorno = false;
-		// se a pasta não existir cria
+		// se a pasta nï¿½o existir cria
 		File pasta = new File(PATH);
 		if (!pasta.exists())
 			pasta.mkdirs();
@@ -494,7 +496,7 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 		// se o arquivo ja existe exclui
 		if (arquivo.exists()) {
 			arquivo.delete();
-			addAvisoMensagem("O arquivo da imagem existente foi excluído.");
+			addAvisoMensagem("O arquivo da imagem existente foi excluï¿½do.");
 		}
 
 		try {
@@ -520,7 +522,7 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 			retorno = true;
 		} catch (IOException e) {
 			e.printStackTrace();
-			addErroMensagem("O arquivo da imagem não foi enviado, tente novamente!");
+			addErroMensagem("O arquivo da imagem nï¿½o foi enviado, tente novamente!");
 			retorno = false;
 		}
 		return retorno;
@@ -532,7 +534,7 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 		if(arquivo.exists()) 
 		bytesImagem = FileParaBytes.getFileBytes(arquivo);
 		else
-			addErroMensagem("O arquivo de imagem da logomarca não foi encontrado! Carregue uma nova imagem.");
+			addErroMensagem("O arquivo de imagem da logomarca nï¿½o foi encontrado! Carregue uma nova imagem.");
 	}
 	
 	public void excluirImagem() {
@@ -541,7 +543,7 @@ public class SiteBean extends UtilBean implements Serializable, CrudBeans<Object
 			arquivo.delete();
 		site.setWeb_img_nome(null);
 		model.alterarSite(site);
-		addInfoMensagem("Imagem excluída com sucesso.");
+		addInfoMensagem("Imagem excluï¿½da com sucesso.");
 		retornar();
 	}
 	
